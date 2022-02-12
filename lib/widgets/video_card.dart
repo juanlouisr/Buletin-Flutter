@@ -25,7 +25,12 @@ class VideoCard extends StatelessWidget {
             AspectRatio(
               aspectRatio: cardAspectRatio,
               child: Image.network(
-                videoInfo.thumbnail,
+                // sementara pakai url video
+                videoInfo.videoUrl
+                        .replaceAll("https://www.youtube.com/watch?v=",
+                            "https://img.youtube.com/vi/")
+                        .replaceAll("&t=15s", "") +
+                    "/0.jpg",
                 fit: BoxFit.cover,
                 loadingBuilder: (BuildContext context, Widget child,
                     ImageChunkEvent? loadingProgress) {
@@ -49,7 +54,7 @@ class VideoCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    videoInfo.judul,
+                    videoInfo.title,
                     style: Theme.of(context).textTheme.bodyText1!.copyWith(
                           fontSize: titleFontSize,
                           fontWeight: FontWeight.w500,
@@ -58,7 +63,7 @@ class VideoCard extends StatelessWidget {
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    videoInfo.deskripsi,
+                    videoInfo.desc,
                     maxLines: 1,
                     style: Theme.of(context)
                         .textTheme

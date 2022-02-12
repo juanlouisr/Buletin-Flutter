@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 const String appName = "Buletin.id";
+const String androidLocalhost = "10.0.2.2:8080";
+const String videoListEndpoint = "/video/list";
 
 // Video Card configuration
 const double cardAspectRatio = 2.2;
