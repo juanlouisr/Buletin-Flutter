@@ -1,0 +1,26 @@
+stages:
+  - pre-build
+  - build
+  - test
+  - deploy
+
+code-quality:
+  stage: pre-build
+  image: cirrusci/flutter:2.10.0
+  tags: 
+    - ci
+  script:
+    - flutter pub get
+    - flutter pub run dart_code_metrics:metrics analyze lib
+
+build:
+  stage: build
+  image: cirrusci/flutter:2.10.0
+  tags:
+    - ci
+  script:
+    - flutter clean
+    - flutter pub get
+    - flutter build apk --split-per-abi --release
+  only:
+    - merge_requests
