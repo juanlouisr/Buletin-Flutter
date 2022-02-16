@@ -1,6 +1,5 @@
 import 'package:buletin/constants.dart';
 import 'package:buletin/screens/home/home_screen.dart';
-import 'package:buletin/screens/show.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -17,7 +16,9 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Show(),
+      home: HomeScreen(
+        key: key,
+      ),
     );
   }
 }
