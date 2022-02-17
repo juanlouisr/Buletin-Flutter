@@ -11,7 +11,11 @@ code-quality:
     - ci
   script:
     - flutter pub get
-    - flutter pub run dart_code_metrics:metrics analyze lib
+    - flutter pub run dart_code_metrics:metrics analyze lib > report.txt
+  artifacts:
+    paths:
+      - report.txt
+    expire_in: 1 week
 
 build:
   stage: build
@@ -22,5 +26,11 @@ build:
     - flutter clean
     - flutter pub get
     - flutter build apk --split-per-abi --release
+  artifacts:
+    paths:
+      - build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
+      - build/app/outputs/flutter-apk/app-arm64-v8a-release.apk
+      - build/app/outputs/flutter-apk/app-x86_64-release.apk
+    expire_in: 1 week
   only:
     - merge_requests
