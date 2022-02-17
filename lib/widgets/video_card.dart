@@ -1,6 +1,7 @@
 import 'package:buletin/constants.dart';
 import 'package:buletin/models/video_info.dart';
 import 'package:flutter/material.dart';
+import 'package:buletin/screens/show.dart';
 
 class VideoCard extends StatelessWidget {
   final VideoInfo videoInfo;
@@ -78,7 +79,9 @@ class VideoCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
         ),
       ),
-      onTap: () {},
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Show()));
+      },
     );
   }
 }
