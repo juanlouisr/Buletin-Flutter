@@ -1,7 +1,7 @@
 import 'package:buletin/models/channel_info.dart';
 
 class VideoInfo {
-  final String videoId;
+  final int videoId;
   final ChannelInfo channelInfo;
   final String title;
   final String desc;
@@ -23,7 +23,7 @@ class VideoInfo {
   });
 
   factory VideoInfo.fromMap(Map<String, dynamic> map) {
-    final String videoId = map['video_id'] as String;
+    final int videoId = map['video_id'] as int;
     final ChannelInfo channelInfo = ChannelInfo.fromMap(map['channel_info']);
     final String title = map['video_title'] as String;
     final String desc = map['video_desc'] as String;
