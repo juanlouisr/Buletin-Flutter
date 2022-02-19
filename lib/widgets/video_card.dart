@@ -1,5 +1,6 @@
 import 'package:buletin/constants.dart';
 import 'package:buletin/models/video_info.dart';
+import 'package:buletin/widgets/aspect_ratio_image.dart';
 import 'package:flutter/material.dart';
 import 'package:buletin/screens/show.dart';
 
@@ -12,43 +13,27 @@ class VideoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      child: Card(
-        semanticContainer: true,
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(cardBorderRadius),
-        ),
-        // margin: const EdgeInsets.all(marginSize),
-        elevation: cardElevation,
+    return Card(
+      semanticContainer: true,
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(cardBorderRadius),
+      ),
+      elevation: cardElevation,
+      child: InkWell(
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Show()));
+        },
         child: Column(
           children: <Widget>[
-            AspectRatio(
-              aspectRatio: cardAspectRatio,
-              child: Image.network(
-                // sementara pakai url video
-                videoInfo.videoUrl
+            AspectRatioImageNetwork(
+                image: videoInfo.videoUrl
                         .replaceAll("https://www.youtube.com/watch?v=",
                             "https://img.youtube.com/vi/")
                         .replaceAll("&t=15s", "") +
                     "/0.jpg",
-                fit: BoxFit.cover,
-                loadingBuilder: (BuildContext context, Widget child,
-                    ImageChunkEvent? loadingProgress) {
-                  if (loadingProgress == null) {
-                    return child;
-                  }
-                  return Center(
-                    child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
-                          : null,
-                    ),
-                  );
-                },
-              ),
-            ),
+                aspectRatio: cardAspectRatio),
             Padding(
               padding: const EdgeInsets.all(paddingSize),
               child: Column(
@@ -79,9 +64,6 @@ class VideoCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
         ),
       ),
-      onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => Show()));
-      },
     );
   }
 }

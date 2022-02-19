@@ -1,4 +1,4 @@
-import 'dart:convert';
+import 'package:buletin/api/video_api.dart';
 import 'package:buletin/constants.dart';
 import 'package:buletin/models/video_info.dart';
 import 'package:buletin/widgets/video_card.dart';
@@ -15,28 +15,12 @@ class VideoList extends StatefulWidget {
 class _VideoListState extends State<VideoList> {
   List<VideoInfo> vidList = [];
 
-  Future getVideoData() async {
-    var response =
-        await http.get(Uri.http(androidLocalhost, videoListEndpoint));
-    print(response.statusCode);
-    var jsonData = jsonDecode(response.body);
-
-    List<VideoInfo> videoList = [];
-
-    for (var u in jsonData['data']['videos']) {
-      var vid = VideoInfo.fromMap(u);
-      videoList.add(vid);
-    }
-
-    return videoList;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(4 * marginSize),
-      child: FutureBuilder(
-        future: getVideoData(),
+      child: FutureBuilder<List<VideoInfo>> (
+        future: VideoAPI.getVideoData(),
         builder: (context, snapshot) {
           if (snapshot.data == null) {
             return const Center(
@@ -44,12 +28,12 @@ class _VideoListState extends State<VideoList> {
             );
           } else {
             return GridView.builder(
-              itemCount: (snapshot.data as List<VideoInfo>).length,
+              itemCount: (snapshot.data)!.length,
               gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 500,
+                maxCrossAxisExtent: 400,
                 crossAxisSpacing: marginSize,
                 mainAxisSpacing: marginSize,
-                childAspectRatio: 1.62,
+                childAspectRatio: 1.59,
               ),
               itemBuilder: (context, i) {
                 return GridTile(
