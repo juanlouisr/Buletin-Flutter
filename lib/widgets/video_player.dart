@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:buletin/models/video_info.dart';
 import 'package:buletin/widgets/channel.dart';
 import 'package:buletin/widgets/player.dart';
 
 class VideoPlayer extends StatelessWidget {
+  final VideoInfo videoInfo;
+  const VideoPlayer({
+    required this.videoInfo,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +20,11 @@ class VideoPlayer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Player(),
+          Player(videoInfo),
           Container(
             padding: EdgeInsets.only(top: 10.0, bottom: 5.0),
             child: Text(
-              'Narasi Newsroom',
+              videoInfo.channelInfo.channelName,
               textAlign: TextAlign.left,
               style: TextStyle(fontWeight: FontWeight.w300, fontSize: 15),
             ),
@@ -26,17 +32,17 @@ class VideoPlayer extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
             child: Text(
-              'Ide Provinsi Sunda Raya (Jawa Barat, Jakarta, Banten) dan KontroversinyaIde Provinsi Sunda Raya (Jawa Barat, Jakarta, Banten) dan Kontroversinya',
+              videoInfo.title,
               textAlign: TextAlign.left,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
             ),
           ),
           Divider(),
-          Channel(),
+          Channel(videoInfo.channelInfo),
           Container(
             padding: EdgeInsets.only(top: 15.0),
             child: Text(
-              'Aturan baru Pembayaran Manfaat Jaminan Hari Tua (JHT) yang dikeluarkan pemerintah menuai polemik. Pasalnya, dalam aturan itu, pekerja tidak bisa mencairkan JHT langsung setelah kena PHK atau mengundurkan diri dari pekerjaan mereka. Namun pekerja baru bisa menikmati JHT mereka setelah berusia 56 tahun',
+              videoInfo.desc,
               style: TextStyle(
                 fontSize: 16
               )

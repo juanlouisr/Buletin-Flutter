@@ -23,7 +23,7 @@ class VideoCard extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Show()));
+              context, MaterialPageRoute(builder: (context) => Show(videoInfo.videoId)));
         },
         child: Column(
           children: <Widget>[

@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:buletin/models/channel_info.dart';
 
 class Channel extends StatelessWidget {
+  late ChannelInfo channel;
+
+  Channel(ChannelInfo channel) {
+    this.channel = channel;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +28,7 @@ class Channel extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'NARASI NEWSROOM',
+                  channel.channelName,
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 18,

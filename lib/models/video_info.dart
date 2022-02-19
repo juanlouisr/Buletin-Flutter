@@ -1,4 +1,5 @@
 import 'package:buletin/models/channel_info.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoInfo {
   final int videoId;
@@ -21,6 +22,16 @@ class VideoInfo {
     required this.viewCount,
     required this.thumbnail,
   });
+
+  String? getVideoId()
+  {
+    return YoutubePlayer.convertUrlToId(videoUrl);
+  }
+
+  String? getThumbnail()
+  {
+    return 'https://img.youtube.com/vi/' + (getVideoId() ?? '') + '/0.jpg';
+  }
 
   factory VideoInfo.fromMap(Map<String, dynamic> map) {
     final int videoId = map['video_id'] as int;

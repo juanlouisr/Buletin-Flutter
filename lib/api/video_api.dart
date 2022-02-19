@@ -24,4 +24,30 @@ class VideoAPI {
 
     return videoList;
   }
+
+  static Future<List<dynamic>> getDetailVideo(int videoId) async {
+    var uri = Uri.http(baseUrl,'video/' + videoId.toString());
+    final queryParams = {
+      'page_no': '1',
+      'page_size': '1000',
+    };
+    var uri2 = Uri.http(baseUrl,videoListEndpoint,queryParams);
+    final results = await Future.wait([
+      http.get(uri),
+      http.get(uri2)
+    ]);
+
+    var vidRes = jsonDecode(results[0].body);
+    var vid = VideoInfo.fromMap(vidRes['data']);
+
+    var jsonData = jsonDecode(results[1].body);
+    List<VideoInfo> videoList = [];
+
+    for (var u in jsonData['data']['videos']) {
+      var vid = VideoInfo.fromMap(u);
+      videoList.add(vid);
+    }
+
+    return [vid, videoList];
+  }
 }
