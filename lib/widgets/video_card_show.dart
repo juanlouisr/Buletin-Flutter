@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:buletin/models/dummy_video.dart';
+import 'package:buletin/models/video_info.dart';
+import 'package:buletin/screens/show.dart';
 
 class VideoCardShow extends StatelessWidget {
-  late DummyVideo test;
+  late VideoInfo videoInfo;
 
-  VideoCardShow(DummyVideo test) {
-    this.test = test;
+  VideoCardShow(VideoInfo videoInfo) {
+    this.videoInfo = videoInfo;
   }
 
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return InkWell(
+      onTap: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Show(videoInfo.videoId)));
+      },
+      child: Container(
         margin: EdgeInsets.only(bottom: 10, right: 20),
         child: Row(
           children: [
@@ -25,8 +31,8 @@ class VideoCardShow extends StatelessWidget {
                 image: DecorationImage(
                   fit: BoxFit.cover,
                   image: NetworkImage(
-                    // 'https://2.bp.blogspot.com/-02D2Du7X_D0/XL7ApmT9B2I/AAAAAAAAAQQ/1KNM-yNQMgsW_oBPVnYFTqF3y58RHg2pwCLcBGAs/s1600/csf.jpg'
-                    test.thumbnail
+                    // 'https://img.youtube.com/vi/o1cLDdNiHLI/0.jpg'
+                    videoInfo.getThumbnail() ?? '#'
                   ),
                 ),
               ),
@@ -36,7 +42,7 @@ class VideoCardShow extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    test.name,
+                    videoInfo.title,
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 18,
@@ -47,7 +53,7 @@ class VideoCardShow extends StatelessWidget {
                     height: 8,
                   ),
                   Text(
-                    test.channelName,
+                    videoInfo.channelInfo.channelName,
                     style: TextStyle(
                       color: Colors.grey[800]
                     ),
@@ -57,6 +63,7 @@ class VideoCardShow extends StatelessWidget {
             ),
           ],
         ),
-      );
+      ),
+    );
   }
 }
