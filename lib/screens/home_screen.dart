@@ -1,6 +1,8 @@
 import 'package:buletin/constants.dart';
 import 'package:buletin/widgets/sidebar.dart';
 import 'package:buletin/widgets/video_list.dart';
+import 'package:buletin/widgets/channel_list.dart';
+import 'package:buletin/widgets/title_home.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -20,7 +22,14 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: const VideoList(),
+      body: ListView(
+        children: [
+          TitleHome('New Release'),
+          VideoList(),
+          TitleHome('Channel'),
+          ChannelList(),
+        ],
+      ),
     );
   }
 }
