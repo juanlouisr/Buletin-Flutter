@@ -27,20 +27,24 @@ class _VideoListState extends State<VideoList> {
               child: Text('Loading'),
             );
           } else {
-            return GridView.builder(
-              itemCount: (snapshot.data)!.length,
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 400,
-                crossAxisSpacing: marginSize,
-                mainAxisSpacing: marginSize,
-                childAspectRatio: 1.59,
-              ),
-              itemBuilder: (context, i) {
-                return GridTile(
-                    child: VideoCard(
-                  videoInfo: (snapshot.data as List<VideoInfo>)[i],
-                ));
-              },
+            return SizedBox(
+              width: double.infinity,
+              height: 250,
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                itemCount: (snapshot.data ?? []).length,
+                itemBuilder: (context, i) {
+                  return Container(
+                    height: 200,
+                    width: 400,
+                    margin: EdgeInsets.only(right: 10, left: 10),
+                    child: GridTile(
+                      child: VideoCard(
+                    videoInfo: (snapshot.data as List<VideoInfo>)[i],
+                  )),
+                  );
+                },
+              )
             );
           }
         },
