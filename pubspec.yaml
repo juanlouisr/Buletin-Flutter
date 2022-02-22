@@ -37,6 +37,7 @@ dependencies:
   http: ^0.13.4
   responsive_grid: ^2.0.0
   youtube_player_flutter: ^8.0.0
+  flutter_login: ^3.1.0
 
 dev_dependencies:
   flutter_test:
