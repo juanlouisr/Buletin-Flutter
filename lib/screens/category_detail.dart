@@ -1,11 +1,13 @@
 import 'package:buletin/constants.dart';
-import 'package:buletin/widgets/category_list.dart';
 import 'package:buletin/widgets/playlist_list.dart';
-import 'package:buletin/widgets/sidebar.dart';
 import 'package:flutter/material.dart';
 
-class ExploreScreen extends StatelessWidget {
-  const ExploreScreen({ Key? key }) : super(key: key);
+class CategoryDetail extends StatelessWidget {
+  final int categoryId;
+  const CategoryDetail({
+    required this.categoryId,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,8 +22,12 @@ class ExploreScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: const CategoryList(),
-      drawer: const SideNavigationBar(),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: PlaylistList(
+          categoryId: categoryId,
+        ),
+      ),
     );
   }
 }

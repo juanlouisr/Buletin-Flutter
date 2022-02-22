@@ -1,5 +1,6 @@
 import 'package:buletin/constants.dart';
 import 'package:buletin/models/category.dart';
+import 'package:buletin/screens/category_detail.dart';
 import 'package:buletin/widgets/aspect_ratio_image.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +22,15 @@ class CategoryCard extends StatelessWidget {
       elevation: cardElevation,
       child: InkWell(
         splashColor: Colors.blue.withAlpha(30),
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CategoryDetail(
+                      categoryId: category.categoryId,
+                    )),
+          );
+        },
         child: Stack(
           alignment: Alignment.center,
           children: [
