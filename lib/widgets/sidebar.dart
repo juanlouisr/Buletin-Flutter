@@ -1,5 +1,6 @@
 import 'package:buletin/screens/explore_screen.dart';
 import 'package:buletin/screens/home_screen.dart';
+import 'package:buletin/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
 class SideNavigationBar extends StatelessWidget {
@@ -66,7 +67,10 @@ class SideNavigationBar extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.exit_to_app),
             title: const Text("Logout"),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+            context, MaterialPageRoute(builder: (context) => LoginScreen()));
+            },
           ),
         ],
       ),
