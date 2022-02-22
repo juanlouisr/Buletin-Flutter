@@ -22,9 +22,9 @@ class CategoryList extends StatelessWidget {
           'Sport',
           'Classroom',
         ]
-            .map((e) => CategoryCard(
+            .asMap().entries.map((e) =>  CategoryCard(
                   category: Category(
-                      name: e, desc: 'Ini adalah sebuah kategori temporary'),
+                      name: e.value, categoryId: e.key),
                 ))
             .toList(),
       ),
