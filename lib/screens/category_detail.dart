@@ -1,5 +1,5 @@
 import 'package:buletin/constants.dart';
-import 'package:buletin/widgets/playlist_list.dart';
+import 'package:buletin/widgets/playlist/playlist_list.dart';
 import 'package:flutter/material.dart';
 
 class CategoryDetail extends StatelessWidget {

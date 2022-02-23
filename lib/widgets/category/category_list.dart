@@ -1,6 +1,6 @@
 import 'package:buletin/constants.dart';
 import 'package:buletin/models/category.dart';
-import 'package:buletin/widgets/category_card.dart';
+import 'package:buletin/widgets/category/category_card.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 

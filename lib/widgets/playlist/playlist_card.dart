@@ -1,6 +1,6 @@
 import 'package:buletin/constants.dart';
 import 'package:buletin/models/playlist_info.dart';
-import 'package:buletin/widgets/aspect_ratio_image.dart';
+import 'package:buletin/widgets/other/aspect_ratio_image.dart';
 import 'package:flutter/material.dart';
 
 class PlaylistCard extends StatelessWidget {

@@ -1,6 +1,6 @@
 import 'package:buletin/api/playlist_api.dart';
 import 'package:buletin/models/playlist_info.dart';
-import 'package:buletin/widgets/playlist_card.dart';
+import 'package:buletin/widgets/playlist/playlist_card.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 

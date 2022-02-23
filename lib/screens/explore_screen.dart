@@ -1,7 +1,7 @@
 import 'package:buletin/constants.dart';
-import 'package:buletin/widgets/category_list.dart';
-import 'package:buletin/widgets/playlist_list.dart';
-import 'package:buletin/widgets/sidebar.dart';
+import 'package:buletin/widgets/category/category_list.dart';
+import 'package:buletin/widgets/playlist/playlist_list.dart';
+import 'package:buletin/widgets/other/sidebar.dart';
 import 'package:flutter/material.dart';
 
 class ExploreScreen extends StatelessWidget {

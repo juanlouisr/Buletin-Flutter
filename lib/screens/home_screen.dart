@@ -1,8 +1,8 @@
 import 'package:buletin/constants.dart';
-import 'package:buletin/widgets/sidebar.dart';
-import 'package:buletin/widgets/video_list.dart';
-import 'package:buletin/widgets/channel_list.dart';
-import 'package:buletin/widgets/title_home.dart';
+import 'package:buletin/widgets/other/sidebar.dart';
+import 'package:buletin/widgets/video/video_list.dart';
+import 'package:buletin/widgets/channel/channel_list.dart';
+import 'package:buletin/widgets/other/title_home.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
