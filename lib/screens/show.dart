@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:buletin/widgets/video_player.dart';
-import 'package:buletin/widgets/video_card_show.dart';
-import 'package:buletin/widgets/sidebar.dart';
+import 'package:buletin/widgets/video/video_player.dart';
+import 'package:buletin/widgets/video/video_card_show.dart';
+import 'package:buletin/widgets/other/sidebar.dart';
 import 'package:buletin/api/video_api.dart';
 import 'package:buletin/models/video_info.dart';
 

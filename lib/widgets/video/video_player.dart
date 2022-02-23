@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:buletin/models/video_info.dart';
-import 'package:buletin/widgets/channel.dart';
-import 'package:buletin/widgets/player.dart';
+import 'package:buletin/widgets/channel/channel.dart';
+import 'package:buletin/widgets/video/player.dart';
 
 class VideoPlayer extends StatelessWidget {
   final VideoInfo videoInfo;

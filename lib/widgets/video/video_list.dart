@@ -1,9 +1,8 @@
 import 'package:buletin/api/video_api.dart';
 import 'package:buletin/constants.dart';
 import 'package:buletin/models/video_info.dart';
-import 'package:buletin/widgets/video_card.dart';
+import 'package:buletin/widgets/video/video_card.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
 
 class VideoList extends StatefulWidget {
   const VideoList({Key? key}) : super(key: key);

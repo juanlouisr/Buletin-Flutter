@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:buletin/screens/home_screen.dart';
-import 'package:buletin/widgets/sidebar.dart';
+import 'package:buletin/widgets/other/sidebar.dart';
 
 const users = const {
   'admin@admin.com': '123456',

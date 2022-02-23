@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:buletin/constants.dart';
-import 'package:buletin/widgets/channel_card.dart';
+import 'package:buletin/widgets/channel/channel_card.dart';
 
 class ChannelList extends StatelessWidget {
   @override

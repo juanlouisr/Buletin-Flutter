@@ -1,7 +1,7 @@
 import 'package:buletin/constants.dart';
 import 'package:buletin/models/category.dart';
 import 'package:buletin/screens/category_detail.dart';
-import 'package:buletin/widgets/aspect_ratio_image.dart';
+import 'package:buletin/widgets/other/aspect_ratio_image.dart';
 import 'package:flutter/material.dart';
 
 class CategoryCard extends StatelessWidget {
