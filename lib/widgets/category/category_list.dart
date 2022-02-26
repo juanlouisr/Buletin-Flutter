@@ -10,23 +10,29 @@ class CategoryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
-      child: ResponsiveGridList(
-        desiredItemWidth: 200,
-        minSpacing: 10,
-        children: [
-          'Entertainment',
-          'Podcast',
-          'Stories',
-          'Newsroom',
-          'Sport',
-          'Classroom',
-        ]
-            .asMap().entries.map((e) =>  CategoryCard(
-                  category: Category(
-                      name: e.value, categoryId: e.key),
-                ))
-            .toList(),
+      padding: const EdgeInsets.all(30),
+      child: Center(
+        child: ResponsiveGridRow(
+          children: [
+            'Entertainment',
+            'Podcast',
+            'Stories',
+            'Newsroom',
+            'Sport',
+            'Classroom',
+          ]
+              .asMap()
+              .entries
+              .map((e) => CategoryCard(
+                    category: Category(name: e.value, categoryId: e.key),
+                  ))
+              .map((e) => ResponsiveGridCol(
+                    child: e,
+                    xs: 12,
+                    md: 4,
+                  ))
+              .toList(),
+        ),
       ),
     );
   }

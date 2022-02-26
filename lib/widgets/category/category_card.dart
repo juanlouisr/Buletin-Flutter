@@ -14,39 +14,42 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      clipBehavior: Clip.antiAliasWithSaveLayer,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(cardBorderRadius),
-      ),
-      elevation: cardElevation,
-      child: InkWell(
-        splashColor: Colors.blue.withAlpha(30),
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => CategoryDetail(
-                      categoryId: category.categoryId,
-                    )),
-          );
-        },
-        child: Stack(
-          alignment: Alignment.center,
-          children: [
-            const AspectRatioImageNetwork(
-                image: 'http://www.fnordware.com/superpng/pnggrad16rgb.png',
-                aspectRatio: 2.5),
-            Center(
-              child: Text(
-                category.name,
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                      color: Colors.white,
-                      fontSize: 25,
-                    ),
+    return Container(
+      margin: const EdgeInsets.all(4),
+      child: Card(
+        clipBehavior: Clip.antiAliasWithSaveLayer,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(cardBorderRadius),
+        ),
+        elevation: cardElevation,
+        child: InkWell(
+          splashColor: Colors.blue.withAlpha(30),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => CategoryDetail(
+                        categoryId: category.categoryId,
+                      )),
+            );
+          },
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              const AspectRatioImageNetwork(
+                  image: 'http://www.fnordware.com/superpng/pnggrad16rgb.png',
+                  aspectRatio: 2.6),
+              Center(
+                child: Text(
+                  category.name,
+                  style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                        color: Colors.white,
+                        fontSize: 25,
+                      ),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
