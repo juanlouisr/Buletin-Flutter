@@ -44,7 +44,7 @@ class SideNavigationBar extends StatelessWidget {
             title: const Text("Explore"),
             onTap: () {
               Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const ExploreScreen()));
+            context, MaterialPageRoute(builder: (context) => ExploreScreen()));
             },
           ),
           ListTile(
