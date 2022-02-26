@@ -1,12 +1,33 @@
+import 'package:buletin/constants.dart';
+import 'package:buletin/widgets/playlist/playlist_list.dart';
 import 'package:flutter/material.dart';
 
 class CategoryDetail extends StatelessWidget {
-  const CategoryDetail({ Key? key }) : super(key: key);
+  final int categoryId;
+  const CategoryDetail({
+    required this.categoryId,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      
+    return Scaffold(
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: const <Widget>[
+            Text(
+              appName,
+            ),
+          ],
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(20),
+        child: PlaylistList(
+          categoryId: categoryId,
+        ),
+      ),
     );
   }
 }
