@@ -1,42 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:buletin/screens/home_screen.dart';
+import 'package:buletin/screens/interest_choose_screen.dart';
 import 'package:buletin/widgets/other/sidebar.dart';
+import 'package:buletin/api/auth_api.dart';
+import 'package:provider/provider.dart';
+import 'package:form_validator/form_validator.dart';
 
-const users = const {
-  'admin@admin.com': '123456',
-  'hunter@gmail.com': 'hunter',
-};
+class LoginScreen extends StatefulWidget {
+  @override
+  _LoginScreen createState() => _LoginScreen();
+}
 
-class LoginScreen extends StatelessWidget {
+class _LoginScreen extends State<LoginScreen> {
   Duration get loginTime => Duration(milliseconds: 2250);
-
-  Future<String?> _authUser(LoginData data) {
-    debugPrint('Name: ${data.name}, Password: ${data.password}');
-    return Future.delayed(loginTime).then((_) {
-      if (!users.containsKey(data.name)) {
-        return 'User not exists';
-      }
-      if (users[data.name] != data.password) {
-        return 'Password does not match';
-      }
-      return null;
-    });
-  }
+  bool isSignUp = false;
+  late SignupData signupData;
+  final authApi = new AuthApi();
+  final validateName = ValidationBuilder().minLength(1).build();
+  final validatePhone = ValidationBuilder().minLength(1).phone().build();
 
   Future<String?> _signupUser(SignupData data) {
-    debugPrint('Signup Name: ${data.name}, Password: ${data.password}');
+    setState(() => isSignUp = false);
     return Future.delayed(loginTime).then((_) {
-      return null;
-    });
-  }
-
-  Future<String?> _recoverPassword(String name) {
-    debugPrint('Name: $name');
-    return Future.delayed(loginTime).then((_) {
-      if (!users.containsKey(name)) {
-        return 'User not exists';
-      }
+      setState(() => isSignUp = true);
+      setState(() => signupData = data);
       return null;
     });
   }
@@ -56,15 +44,40 @@ class LoginScreen extends StatelessWidget {
         ),
       ),
       body: FlutterLogin(
-        onLogin: _authUser,
+        onLogin: Provider.of<AuthApi>(context, listen: false).authUser,
         onSignup: _signupUser,
         onSubmitAnimationCompleted: () {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => HomeScreen(),
-          ));
+          if (!isSignUp) {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => HomeScreen(),
+            )); 
+          } else {
+            Navigator.of(context).pushReplacement(MaterialPageRoute(
+              builder: (context) => InterestChooseScreen(signupData: signupData),
+            ));
+          }
         },
-        hideForgotPasswordButton: true,
-        onRecoverPassword: _recoverPassword,
+        onRecoverPassword: authApi.recoverPassword,
+        messages: LoginMessages(
+          signUpSuccess: 'Please choose your interest'
+        ),
+        additionalSignupFields: [
+          UserFormField(
+            icon: Icon(Icons.people),
+            keyName: 'name', 
+            fieldValidator: (val) {
+              return validateName(val);
+            },
+            userType: LoginUserType.name),
+          UserFormField(
+            icon: Icon(Icons.local_phone),
+            keyName: 'phone', 
+            fieldValidator: (val) {
+              return validatePhone(val);
+            },
+            userType: LoginUserType.phone
+          ),
+        ]
       ),
     );
   }
