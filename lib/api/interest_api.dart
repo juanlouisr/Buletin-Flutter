@@ -5,10 +5,14 @@ import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 
 class InterestAPI {
   static Future<List<C2Choice<dynamic>>> get() async {
-    var uri = Uri.http(baseUrl,interestEndpoint);
+    final queryParams = {
+      'interest_id': '',
+    };
+    
+    var uri = Uri.http(baseUrl,interestEndpoint,queryParams);
     var response = await http.get(uri);
     var jsonData = jsonDecode(response.body);
-    var data = jsonData['data']['interests'];
+    var data = jsonData['data']['interests'] ?? [];
 
     List<C2Choice<dynamic>> interests = [];
     for (final id in data.keys) {
