@@ -15,15 +15,22 @@ class SideNavigationBar extends StatelessWidget {
       Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
     }
 
+    var accountFullname = '';
+    var accountEmail = '';
     var isLoggedIn = context.watch<AuthApi>().isAuth;
+    if (isLoggedIn) {
+      var account = context.read<AuthApi>().account;
+      accountFullname = account?.accountFullname ?? '';
+      accountEmail = account?.accountEmail ?? '';
+    }
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
           if (isLoggedIn) ...[
             UserAccountsDrawerHeader(
-              accountName: const Text("Jhon Doe"),
-              accountEmail: const Text("Johndoe@example.com"),
+              accountName: Text(accountFullname),
+              accountEmail: Text(accountEmail),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
                   child: Image.network(
