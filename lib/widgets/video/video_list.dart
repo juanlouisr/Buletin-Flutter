@@ -19,7 +19,7 @@ class _VideoListState extends State<VideoList> {
     return Container(
       margin: const EdgeInsets.all(4 * marginSize),
       child: FutureBuilder<List<VideoInfo>> (
-        future: VideoAPI.getVideoData(),
+        future: VideoAPI.getVideoData(1, 8),
         builder: (context, snapshot) {
           if (snapshot.data == null) {
             return const Center(
