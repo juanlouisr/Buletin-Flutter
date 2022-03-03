@@ -6,6 +6,8 @@ const String videoListEndpoint = '/video';
 const String playlistEndpoint = '/playlist';
 const String loginEndpoint = '/login';
 const String registerEndpoint = '/user';
+const String profileEndpoint = '/profile';
+const String interestEndpoint = '/interest';
 
 // Video Card configuration
 const double cardAspectRatio = 2.2;

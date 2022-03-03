@@ -6,6 +6,7 @@ import 'package:flutter_login/flutter_login.dart';
 import 'package:buletin/api/auth_api.dart';
 import 'package:provider/provider.dart';
 import 'package:buletin/screens/home_screen.dart';
+import 'package:buletin/api/interest_api.dart';
 
 class InterestChooseScreen extends StatefulWidget {
   final SignupData signupData;
@@ -16,20 +17,7 @@ class InterestChooseScreen extends StatefulWidget {
 }
 
 class _InterestChooseScreen extends State<InterestChooseScreen> {
-  List<String> tags = [];
-  List<String> options = [
-    'News',
-    'Entertainment',
-    'Politics',
-    'Automotive',
-    'Sports',
-    'Education',
-    'Fashion',
-    'Travel',
-    'Food',
-    'Tech',
-    'Science',
-  ];
+  List<dynamic> interests = [];
 
   @override
   Widget build(BuildContext context) {
@@ -68,21 +56,25 @@ class _InterestChooseScreen extends State<InterestChooseScreen> {
                         textAlign: TextAlign.left,
                         style: TextStyle(fontSize: 20),
                       ),
-                      ChipsChoice<String>.multiple(
-                        value: tags,
-                        onChanged: (val) => setState(() => tags = val),
-                        choiceItems: C2Choice.listFrom<String, String>(
-                          source: options,
-                          value: (i, v) => v,
-                          label: (i, v) => v,
-                        ),
-                        wrapped: true,
-                        choiceStyle: C2ChoiceStyle(
-                          labelStyle: TextStyle(color: Colors.black),
-                          color: Colors.blue,
-                          margin: EdgeInsets.all(10),
-                          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20)
-                        ),
+                      FutureBuilder(
+                        future: InterestAPI.get(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return ChipsChoice<dynamic>.multiple(
+                              value: interests,
+                              onChanged: (val) => setState(() => interests = val),
+                              choiceItems: snapshot.data as List<C2Choice<dynamic>>,
+                              wrapped: true,
+                              choiceStyle: C2ChoiceStyle(
+                                labelStyle: TextStyle(color: Colors.black),
+                                color: Colors.blue,
+                                margin: EdgeInsets.all(10),
+                                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20)
+                              ),
+                            );
+                          }
+                          return CircularProgressIndicator();
+                        },
                       ),
                       Container(
                         margin: EdgeInsets.only(bottom: 40),
@@ -96,7 +88,8 @@ class _InterestChooseScreen extends State<InterestChooseScreen> {
                           backgroundColor: Colors.blue,
                           radius: 20,
                           onPressed: () async {
-                            var success = await Provider.of<AuthApi>(context, listen: false).signupUser(widget.signupData);
+                            var interestString = interests.join(',');
+                            var success = await Provider.of<AuthApi>(context, listen: false).signupUser(widget.signupData, interestString);
                             if (success) {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
                             }
