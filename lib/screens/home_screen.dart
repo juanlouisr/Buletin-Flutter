@@ -5,6 +5,7 @@ import 'package:buletin/widgets/channel/channel_list.dart';
 import 'package:buletin/widgets/other/title_home.dart';
 import 'package:flutter/material.dart';
 import 'package:buletin/api/auth_api.dart';
+import 'package:buletin/widgets/other/appbar.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -27,16 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const SideNavigationBar(),
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: const <Widget>[
-            Text(
-              appName,
-            ),
-          ],
-        ),
-      ),
+      appBar: CustomAppBar(),
       body: ListView(
         children: [
           TitleHome('New Release'),

@@ -1,4 +1,5 @@
 import 'package:buletin/screens/explore_screen.dart';
+import 'package:buletin/screens/for_you_screen.dart';
 import 'package:buletin/screens/home_screen.dart';
 import 'package:buletin/screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +68,10 @@ class SideNavigationBar extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.collections_bookmark_outlined),
             title: const Text("Reccomendation"),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+            context, MaterialPageRoute(builder: (context) => ForYouScreen()));
+            },
           ),
           const Divider(),
           ListTile(

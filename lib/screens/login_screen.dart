@@ -5,6 +5,7 @@ import 'package:buletin/screens/interest_choose_screen.dart';
 import 'package:buletin/widgets/other/sidebar.dart';
 import 'package:buletin/api/auth_api.dart';
 import 'package:provider/provider.dart';
+import 'package:buletin/widgets/other/appbar.dart';
 import 'package:form_validator/form_validator.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -33,16 +34,7 @@ class _LoginScreen extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const SideNavigationBar(),
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: const <Widget>[
-            Text(
-              'Buletin',
-            ),
-          ],
-        ),
-      ),
+      appBar: CustomAppBar(),
       body: FlutterLogin(
         onLogin: Provider.of<AuthApi>(context, listen: false).authUser,
         onSignup: _signupUser,
