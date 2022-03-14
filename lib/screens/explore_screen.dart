@@ -3,6 +3,7 @@ import 'package:buletin/widgets/category/category_list.dart';
 import 'package:buletin/widgets/search/searchbar.dart';
 import 'package:buletin/widgets/other/sidebar.dart';
 import 'package:flutter/material.dart';
+import 'package:buletin/widgets/other/appbar.dart';
 
 class ExploreScreen extends StatelessWidget {
   ExploreScreen({Key? key}) : super(key: key);
@@ -11,16 +12,7 @@ class ExploreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: const <Widget>[
-            Text(
-              appName,
-            ),
-          ],
-        ),
-      ),
+      appBar: CustomAppBar(),
       body: ListView(
         children: [
           Padding(

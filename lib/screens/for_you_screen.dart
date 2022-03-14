@@ -2,31 +2,26 @@ import 'package:buletin/constants.dart';
 import 'package:buletin/widgets/other/sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_grid/responsive_grid.dart';
-import 'package:buletin/models/channel_info.dart';
 import 'package:buletin/models/video_info.dart';
 import 'package:buletin/widgets/video/video_card.dart';
 import 'package:buletin/widgets/other/title_home.dart';
 import 'package:buletin/api/video_api.dart';
 import 'package:buletin/widgets/other/appbar.dart';
 
-class ChannelScreen extends StatelessWidget {
-  late ChannelInfo channel;
-
-  ChannelScreen(ChannelInfo channel) {
-    this.channel = channel;
-  }
+class ForYouScreen extends StatelessWidget {
+  final int pageSize = 4;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: CustomAppBar(),
       body: FutureBuilder(
-        future: VideoAPI.getChannelVideos(1, 4, channel.channelId),
+        future: VideoAPI.getVideoByInterests(1, pageSize),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data != null) {
               var data = snapshot.data as List<VideoInfo>;
-              return ScrollChannelRow(videos: data, channel: channel);
+              return ScrollForYouRow(videos: data, pageSize: pageSize);
             }
           }
           return CircularProgressIndicator();
@@ -37,17 +32,16 @@ class ChannelScreen extends StatelessWidget {
   }
 }
 
-class ScrollChannelRow extends StatefulWidget {
-  final channel;
+class ScrollForYouRow extends StatefulWidget {
   final videos;
-  const ScrollChannelRow({Key? key, @required this.videos, @required this.channel}): super(key: key);
+  final pageSize;
+  const ScrollForYouRow({Key? key, @required this.videos, @required this.pageSize}): super(key: key);
 
   @override
-  _ScrollChannelRow createState() => _ScrollChannelRow();
+  _ScrollForYouRow createState() => _ScrollForYouRow();
 }
 
-class _ScrollChannelRow extends State<ScrollChannelRow> {
-  late ChannelInfo channel;
+class _ScrollForYouRow extends State<ScrollForYouRow> {
   List<VideoInfo> videos = [];
   int currentPage = 2;
   bool isCanScroll = true;
@@ -55,7 +49,6 @@ class _ScrollChannelRow extends State<ScrollChannelRow> {
   void initState() {
     super.initState();
     videos = widget.videos;
-    channel = widget.channel;
   }
 
   @override
@@ -64,7 +57,7 @@ class _ScrollChannelRow extends State<ScrollChannelRow> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            TitleHome('Video dari ${channel.channelName}'),
+            TitleHome('For You'),
             ResponsiveGridRow(
               children: videos.map((video) {
                 return ResponsiveGridCol(
@@ -82,7 +75,7 @@ class _ScrollChannelRow extends State<ScrollChannelRow> {
       ),
       onNotification: (notification) {
         if (isCanScroll) {
-          VideoAPI.getChannelVideos(currentPage, 4, channel.channelId).then((res) {
+          VideoAPI.getVideoByInterests(currentPage, widget.pageSize).then((res) {
             var data = res as List<VideoInfo>;
             if (data.length > 0) {
               setState(() {

@@ -7,6 +7,7 @@ import 'package:buletin/api/auth_api.dart';
 import 'package:provider/provider.dart';
 import 'package:buletin/screens/home_screen.dart';
 import 'package:buletin/api/interest_api.dart';
+import 'package:buletin/widgets/other/appbar.dart';
 
 class InterestChooseScreen extends StatefulWidget {
   final SignupData signupData;
@@ -23,16 +24,7 @@ class _InterestChooseScreen extends State<InterestChooseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: const SideNavigationBar(),
-        appBar: AppBar(
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: const <Widget>[
-              Text(
-                'Buletin',
-              ),
-            ],
-          ),
-        ),
+        appBar: CustomAppBar(),
         backgroundColor: Colors.blue,
         body: Center(
           child: Expanded(

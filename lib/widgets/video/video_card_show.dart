@@ -16,7 +16,7 @@ class VideoCardShow extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Show(videoInfo.videoId)));
+            context, MaterialPageRoute(builder: (context) => Show(videoInfo)));
       },
       child: Container(
         margin: EdgeInsets.only(bottom: 10, right: 20),
