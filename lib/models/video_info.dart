@@ -23,14 +23,12 @@ class VideoInfo {
     required this.thumbnail,
   });
 
-  String? getVideoId()
-  {
+  String? getVideoId() {
     return YoutubePlayer.convertUrlToId(videoUrl);
   }
 
-  String? getThumbnail()
-  {
-    return 'https://img.youtube.com/vi/' + (getVideoId() ?? '') + '/0.jpg';
+  String? getThumbnail() {
+    return YoutubePlayer.getThumbnail(videoId: getVideoId()!);
   }
 
   factory VideoInfo.fromMap(Map<String, dynamic> map) {
@@ -42,7 +40,7 @@ class VideoInfo {
     final DateTime datePosted = DateTime.parse(map['date_posted']);
     int viewCount = map['video_view_count'] as int;
     String thumbnail = map['video_thumbnail'] as String;
-    
+
     return VideoInfo(
       videoId: videoId,
       channelInfo: channelInfo,
