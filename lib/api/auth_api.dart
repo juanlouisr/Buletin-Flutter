@@ -12,8 +12,8 @@ class AuthApi extends ChangeNotifier {
 
   get isAuth => _isAuth;
 
-  Account? _account = null; 
-  get account => _account;
+  Account? _account; 
+  get account  => _account;
 
   Duration get loginTime => Duration(milliseconds: 2250);
 
