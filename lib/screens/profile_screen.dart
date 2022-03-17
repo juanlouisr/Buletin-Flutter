@@ -1,5 +1,6 @@
 import 'package:buletin/constants.dart';
 import 'package:buletin/models/account.dart';
+import 'package:buletin/screens/change_password_screen.dart';
 import 'package:buletin/widgets/other/appbar.dart';
 import 'package:buletin/widgets/other/sidebar.dart';
 import 'package:flutter/material.dart';
@@ -15,10 +16,9 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const SideNavigationBar(),
       appBar: CustomAppBar(),
       body: Center(
-        child: Container(
+        child: SizedBox(
           width: 500,
           height: 600,
           // padding: const EdgeInsets.all(30),
@@ -80,7 +80,8 @@ class ProfileScreen extends StatelessWidget {
                           ),
                     ),
                   ),
-                  const SizedBox(height: 20),
+                  const Divider(),
+                  const SizedBox(height: 10),
                   ListTile(
                     leading: const Icon(Icons.mail_rounded),
                     title: Text(account.accountEmail.toString()),
@@ -100,17 +101,38 @@ class ProfileScreen extends StatelessWidget {
                           .copyWith(fontSize: 15),
                     ),
                   ),
-                  const SizedBox(height: 10),
-                  Wrap(
-                    spacing: 3.0, // gap between adjacent chips
-                    runSpacing: 2.0, // gap between lines
-                    children: account.interests
-                        .map((e) => Chip(
-                              padding: const EdgeInsets.all(2),
-                              label: Text(e, style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white),),
-                              backgroundColor: Theme.of(context).primaryColor,
-                            ))
-                        .toList(),
+                  const Divider(),
+                  Expanded(
+                    child: Wrap(
+                      spacing: 3.0, // gap between adjacent chips
+                      runSpacing: 2.0, // gap between lines
+                      children: account.interests
+                          .map((e) => Chip(
+                                padding: const EdgeInsets.all(2),
+                                label: Text(
+                                  e,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall!
+                                      .copyWith(color: Colors.white),
+                                ),
+                                backgroundColor: Theme.of(context).primaryColor,
+                              ))
+                          .toList(),
+                    ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ChangePasswordScreen(
+                            email: account.accountEmail,
+                          ),
+                        ),
+                      );
+                    },
+                    child: const Text("Change Password"),
                   ),
                 ],
               ),
