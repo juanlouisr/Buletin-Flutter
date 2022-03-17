@@ -63,7 +63,7 @@ class ProfileScreen extends StatelessWidget {
                                     spreadRadius: 3,
                                     blurRadius: 4,
                                     offset: const Offset(0, 3),
-                                     // changes position of shadow
+                                    // changes position of shadow
                                   ),
                                 ]),
                           ),
@@ -80,15 +80,37 @@ class ProfileScreen extends StatelessWidget {
                           ),
                     ),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 20),
                   ListTile(
-                    leading: const Icon(Icons.mail_outline),
+                    leading: const Icon(Icons.mail_rounded),
                     title: Text(account.accountEmail.toString()),
                   ),
                   const SizedBox(height: 10),
                   ListTile(
-                    leading: const Icon(Icons.phone),
+                    leading: const Icon(Icons.phone_rounded),
                     title: Text(account.accountPhoneNumber.toString()),
+                  ),
+                  const SizedBox(height: 20),
+                  Center(
+                    child: Text(
+                      "Interest",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(fontSize: 15),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Wrap(
+                    spacing: 3.0, // gap between adjacent chips
+                    runSpacing: 2.0, // gap between lines
+                    children: account.interests
+                        .map((e) => Chip(
+                              padding: const EdgeInsets.all(2),
+                              label: Text(e, style: Theme.of(context).textTheme.bodySmall!.copyWith(color: Colors.white),),
+                              backgroundColor: Theme.of(context).primaryColor,
+                            ))
+                        .toList(),
                   ),
                 ],
               ),
