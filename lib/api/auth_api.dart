@@ -79,7 +79,7 @@ class AuthApi extends ChangeNotifier {
   }
 
   Future<bool> signupUser(SignupData data, String interestString) async {
-    var url = Uri.http(baseUrl,registerEndpoint);
+    var url = Uri.http(baseUrl, registerEndpoint);
     var body = jsonEncode({
       'email': data.name,
       'password': data.password,
@@ -102,13 +102,30 @@ class AuthApi extends ChangeNotifier {
     return true;
   }
 
-  Future<String?> recoverPassword(String name) {
-    debugPrint('Name: $name');
-    return Future.delayed(loginTime).then((_) {
-      // if (!users.containsKey(name)) {
-      //   return 'User not exists';
-      // }
-      return null;
+  static Future<bool> changePassword({
+    required String email,
+    required String oldPass,
+    required String newPass,
+  }) async {
+    var url = Uri.http(baseUrl, changePasswordEndpoint);
+    var body = jsonEncode({
+      'email': email,
+      'old_password': oldPass,
+      'new_password': newPass,
     });
+    var response = await http.put(url, body: body);
+    if (response.statusCode != 200) return false;
+    var jsonData = jsonDecode(response.body);
+    if (jsonData["error"] != null) return false;
+    return true;
+  }
+
+  Future<String?> recoverPassword(String name) async {
+    var url = Uri.http(baseUrl, forgotPasswordEndpoint);
+    var body = jsonEncode({
+      'email': name,
+    });
+    await http.post(url, body: body);
+    return null;
   }
 }

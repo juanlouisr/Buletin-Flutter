@@ -7,10 +7,11 @@ const String videoListEndpoint = '/video';
 const String playlistEndpoint = '/playlist';
 const String loginEndpoint = '/login';
 const String registerEndpoint = '/user';
+const String changePasswordEndpoint = '/user';
+const String forgotPasswordEndpoint = '/forgot';
 const String profileEndpoint = '/profile';
 const String interestEndpoint = '/interest';
 
-// Video Card configuration
 const double cardAspectRatio = 2.2;
 const double cardElevation = 5;
 const double cardBorderRadius = 12;
