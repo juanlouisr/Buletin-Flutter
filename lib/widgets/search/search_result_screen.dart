@@ -19,7 +19,6 @@ class SearchResultScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: const <Widget>[
@@ -29,28 +28,28 @@ class SearchResultScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(
-            top: 30,
-            bottom: 30,
-            left: 60,
-            right: 60,
-          ),
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 60, right: 60, bottom: 20),
-                child: RoundedSearchInput(
-                  textController: textController,
-                  hintText: "Cari video",
-                ),
+      body: Padding(
+        padding: const EdgeInsets.only(
+          top: 30,
+          bottom: 30,
+          left: 60,
+          right: 60,
+        ),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(left: 60, right: 60, bottom: 20),
+              child: RoundedSearchInput(
+                textController: textController,
+                hintText: "Cari video",
               ),
-              Container(
-                margin: const EdgeInsets.only(bottom: 20),
-                child: TitleHome("Search Result"),
-              ),
-              FutureBuilder<List<VideoInfo>>(
+            ),
+            Container(
+              margin: const EdgeInsets.only(bottom: 20),
+              child: TitleHome("Search Result"),
+            ),
+            Expanded(
+              child: FutureBuilder(
                 future: VideoAPI.getVideoDataSearch(titleSearch),
                 builder: (context, snapshot) {
                   if (snapshot.data == null) {
@@ -59,20 +58,18 @@ class SearchResultScreen extends StatelessWidget {
                     );
                   } else {
                     return GridView.builder(
-                      shrinkWrap: true,
+                      // shrinkWrap: true,
                       itemCount: (snapshot.data as List<VideoInfo>).length,
-                      gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                      gridDelegate:
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
                         maxCrossAxisExtent: 500,
                         crossAxisSpacing: marginSize * 3,
                         mainAxisSpacing: marginSize * 3,
-                        childAspectRatio: MediaQuery.of(context).size.width >
-                                MediaQuery.of(context).size.height
-                            ? 1.62
-                            : 1.56,
+                        childAspectRatio: 1.59,
                       ),
                       itemBuilder: (context, i) {
                         return GridTile(
-                            child: VideoCard(
+                            child: VideoCardShareable(
                           videoInfo: (snapshot.data as List<VideoInfo>)[i],
                         ));
                       },
@@ -80,8 +77,8 @@ class SearchResultScreen extends StatelessWidget {
                   }
                 },
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

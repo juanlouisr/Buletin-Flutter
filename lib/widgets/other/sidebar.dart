@@ -1,7 +1,9 @@
+import 'package:buletin/models/account.dart';
 import 'package:buletin/screens/explore_screen.dart';
 import 'package:buletin/screens/for_you_screen.dart';
 import 'package:buletin/screens/home_screen.dart';
 import 'package:buletin/screens/login_screen.dart';
+import 'package:buletin/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:buletin/api/auth_api.dart';
 import 'package:provider/provider.dart';
@@ -13,37 +15,53 @@ class SideNavigationBar extends StatelessWidget {
   Widget build(BuildContext context) {
     Future logout() async {
       Provider.of<AuthApi>(context, listen: false).authLogout();
-      Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => LoginScreen()));
     }
 
-    var accountFullname = '';
+    var accountFullname = 'Guest';
     var accountEmail = '';
     var isLoggedIn = context.watch<AuthApi>().isAuth;
+    Account? account;
     if (isLoggedIn) {
-      var account = context.read<AuthApi>().account;
-      accountFullname = account?.accountFullname ?? '';
-      accountEmail = account?.accountEmail ?? '';
+      var acc = context.read<AuthApi>().account;
+      if (acc is Account) {
+        account = acc;
+        accountFullname = acc.accountFullname;
+        accountEmail = acc.accountEmail;
+      }
     }
     return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
-          if (isLoggedIn) ...[
-            UserAccountsDrawerHeader(
+          GestureDetector(
+            onTap: () {
+              if (isLoggedIn) {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            ProfileScreen(account: account!)));
+              }
+            },
+            child: UserAccountsDrawerHeader(
               accountName: Text(accountFullname),
               accountEmail: Text(accountEmail),
               currentAccountPicture: CircleAvatar(
                 child: ClipOval(
                   child: Image.network(
-                    "https://lh3.googleusercontent.com/ogw/ADea4I59lb97jZRtDffSpVpk2RXi52W5S0Y3cXq8VIrkCQ=s83-c-mo",
+                    isLoggedIn
+                        ? "https://lh3.googleusercontent.com/ogw/ADea4I59lb97jZRtDffSpVpk2RXi52W5S0Y3cXq8VIrkCQ=s83-c-mo"
+                        : "https://lh3.googleusercontent.com/a-/AOh14Gg45BDQLqBCroOjL85biknOs9kKwywRzw5rWoNw=s360-p-rw-no",
                     width: 90,
                     height: 90,
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
-            )
-          ],
+            ),
+          ),
           ListTile(
             leading: const Icon(Icons.notifications_outlined),
             title: const Text("Notifications"),
@@ -53,24 +71,24 @@ class SideNavigationBar extends StatelessWidget {
             leading: const Icon(Icons.home_outlined),
             title: const Text("Home"),
             onTap: () {
-              Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomeScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HomeScreen()));
             },
           ),
           ListTile(
             leading: const Icon(Icons.search_outlined),
             title: const Text("Explore"),
             onTap: () {
-              Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ExploreScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ExploreScreen()));
             },
           ),
           ListTile(
             leading: const Icon(Icons.collections_bookmark_outlined),
             title: const Text("Reccomendation"),
             onTap: () {
-              Navigator.push(
-            context, MaterialPageRoute(builder: (context) => ForYouScreen()));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => ForYouScreen()));
             },
           ),
           const Divider(),
@@ -93,16 +111,16 @@ class SideNavigationBar extends StatelessWidget {
                 logout();
               },
             )
-          ] else...[
+          ] else ...[
             ListTile(
               leading: const Icon(Icons.exit_to_app),
               title: const Text("Login"),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => LoginScreen()));
               },
             )
           ],
-          
         ],
       ),
     );
