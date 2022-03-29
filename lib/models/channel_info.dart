@@ -20,6 +20,10 @@ class ChannelInfo {
     String channelPicture = map['channel_picture'] as String;
     DateTime createdAt = DateTime.parse(map['created_at']);
 
+    if (channelPicture == "placeholder" ) {
+      channelPicture = "https://www.howtogeek.com/wp-content/uploads/2021/08/YouTube-logo-hero-1.png";
+    } 
+
     return ChannelInfo(
       channelId: channelId,
       ownerId: ownerId,

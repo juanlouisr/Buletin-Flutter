@@ -172,7 +172,7 @@ class VideoCardShareable extends StatelessWidget {
   void share(BuildContext context) {
     RenderBox? box = context.findRenderObject() as RenderBox;
     final String message =
-        "I found this inspiring videos at Buletin.id. Check this out! ${videoInfo.videoUrl}";
+        "I found this inspiring videos at Buletin.id. Check this out! ${videoInfo.getVideoUrl()}";
 
     Share.share(
       message,
