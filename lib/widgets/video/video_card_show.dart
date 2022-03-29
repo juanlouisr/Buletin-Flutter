@@ -32,7 +32,7 @@ class VideoCardShow extends StatelessWidget {
                   fit: BoxFit.cover,
                   image: NetworkImage(
                     // 'https://img.youtube.com/vi/o1cLDdNiHLI/0.jpg'
-                    videoInfo.getThumbnail() ?? '#'
+                    videoInfo.getThumbnail()
                   ),
                 ),
               ),

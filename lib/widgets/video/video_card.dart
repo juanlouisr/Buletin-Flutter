@@ -31,7 +31,7 @@ class VideoCard extends StatelessWidget {
         child: Column(
           children: <Widget>[
             AspectRatioImageNetwork(
-                image: videoInfo.getThumbnail()!, aspectRatio: cardAspectRatio),
+                image: videoInfo.getThumbnail(), aspectRatio: cardAspectRatio),
             Padding(
               padding: const EdgeInsets.all(paddingSize),
               child: Column(
@@ -86,7 +86,7 @@ class VideoCardShareable extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => Show(videoInfo)));
               },
               child: AspectRatioImageNetwork(
-                  image: videoInfo.getThumbnail()!,
+                  image: videoInfo.getThumbnail(),
                   aspectRatio: cardAspectRatio),
             ),
             // Positioned(
