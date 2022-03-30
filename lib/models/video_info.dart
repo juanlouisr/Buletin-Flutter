@@ -1,6 +1,9 @@
 import 'package:buletin/constants.dart';
+import 'dart:convert';
 import 'package:buletin/models/channel_info.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
+import 'package:timeago/timeago.dart' as timeago;
+import 'package:intl/intl.dart';
 
 class VideoInfo {
   final int videoId;
@@ -40,6 +43,18 @@ class VideoInfo {
     return driveUrl + thumbnail;
   }
 
+  String getTimeago() {
+    return timeago.format(datePosted);
+  }
+
+  String getVideoCount() {
+    return NumberFormat().format(viewCount);
+  }
+
+  String getVideoCountCompact() {
+    return NumberFormat.compact().format(viewCount);
+  }
+
   factory VideoInfo.fromMap(Map<String, dynamic> map) {
     final int videoId = map['video_id'] as int;
     final int viewCount = map['video_view_count'] as int;
@@ -51,6 +66,13 @@ class VideoInfo {
     final ChannelInfo channelInfo = ChannelInfo.fromMap(map['channel_info']);
     
     final Map<String, String> interest =  Map.from(map['video_interest_info']).map((k, v) => MapEntry<String, String>(k, v));
+
+    var data = map['video_interest_info'] ?? [];
+    List<String> interests = [];
+    for (final id in data.keys) {
+      final value = data[id];
+      interests.add(value);
+    }
 
     return VideoInfo(
       videoId: videoId,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 const String appName = "Buletin.id";
 const String baseUrl = "10.0.2.2:8080";
@@ -20,3 +21,7 @@ const double paddingSize = 8;
 const double marginSize = 5;
 const double titleFontSize = 16;
 const FontWeight titleFontWeight = FontWeight.w500;
+
+TextStyle poppins = GoogleFonts.poppins();
+
+const Color colorPrimary = Color.fromRGBO(255, 130, 130, 100);
