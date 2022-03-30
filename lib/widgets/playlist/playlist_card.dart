@@ -33,7 +33,7 @@ class PlaylistCard extends StatelessWidget {
             child: Stack(
               children: [
                 AspectRatioImageNetwork(
-                  image: playlistInfo.thumbnail,
+                  image: playlistInfo.getPictureUrl(),
                   aspectRatio: 2.2,
                 ),
                 Positioned(
@@ -66,7 +66,7 @@ class PlaylistCard extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(4),
           child: Text(
-            playlistInfo.playlistName,
+            playlistInfo.name,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: Theme.of(context).textTheme.titleLarge,

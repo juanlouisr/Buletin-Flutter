@@ -32,7 +32,7 @@ class PlaylistDetail extends StatelessWidget {
             width: double.infinity,
             height: 200,
             child: Image.network(
-              playlistInfo.thumbnail,
+              playlistInfo.getPictureUrl(),
               fit: BoxFit.cover,
               loadingBuilder: (BuildContext context, Widget child,
                   ImageChunkEvent? loadingProgress) {
