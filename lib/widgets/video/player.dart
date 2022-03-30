@@ -10,7 +10,7 @@ class Player extends StatelessWidget {
   }
 
   late YoutubePlayerController _controller = YoutubePlayerController(
-      initialVideoId:video.getVideoId() ?? '',
+      initialVideoId:video.getVideoId(),
       flags: YoutubePlayerFlags(
           autoPlay: false,
           mute: false,

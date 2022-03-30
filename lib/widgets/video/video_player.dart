@@ -17,7 +17,7 @@ class VideoPlayer extends StatelessWidget {
   Widget build(BuildContext context) {
     final widthScreen = MediaQuery.of(context).size.width;
     final column1 = widthScreen / 10 * 6.5;
-    final interests = videoInfo.interests ?? [];
+    final interests = videoInfo.interests;
     return Container(
       width: column1,
       padding: EdgeInsets.all(30),
@@ -170,7 +170,7 @@ class VideoPlayer extends StatelessWidget {
 
           Container(
             child: Row(
-              children: List.from(interests.map((interest) => 
+              children: List.from(interests.values.map((interest) => 
                 Container(
                   margin: EdgeInsets.only(right: 10),
                   child: Chip(
