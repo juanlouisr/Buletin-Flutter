@@ -1,7 +1,5 @@
 import 'package:buletin/constants.dart';
-import 'dart:convert';
 import 'package:buletin/models/channel_info.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:intl/intl.dart';
 
@@ -31,7 +29,8 @@ class VideoInfo {
 
   String getVideoId() {
     // return YoutubePlayer.convertUrlToId(videoUrl);
-    return videoFileId;
+    // return videoFileId;
+    return 'RKueSD3gLJQ';
   }
 
   String getVideoUrl() {
@@ -64,15 +63,8 @@ class VideoInfo {
     final String videoFileId = map['video_file_id'] as String;
     final DateTime datePosted = DateTime.parse(map['date_posted']);
     final ChannelInfo channelInfo = ChannelInfo.fromMap(map['channel_info']);
-    
-    final Map<String, String> interest =  Map.from(map['video_interest_info']).map((k, v) => MapEntry<String, String>(k, v));
-
-    var data = map['video_interest_info'] ?? [];
-    List<String> interests = [];
-    for (final id in data.keys) {
-      final value = data[id];
-      interests.add(value);
-    }
+    final Map<String, String> interest = Map.from(map['video_interest_info'])
+        .map((k, v) => MapEntry<String, String>(k, v));
 
     return VideoInfo(
       videoId: videoId,
