@@ -1,6 +1,5 @@
 import 'package:buletin/models/account.dart';
 import 'package:buletin/screens/explore_screen.dart';
-import 'package:buletin/screens/for_you_screen.dart';
 import 'package:buletin/screens/home_screen.dart';
 import 'package:buletin/screens/login_screen.dart';
 import 'package:buletin/screens/profile_screen.dart';
@@ -83,14 +82,14 @@ class SideNavigationBar extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => ExploreScreen()));
             },
           ),
-          ListTile(
-            leading: const Icon(Icons.collections_bookmark_outlined),
-            title: const Text("Reccomendation"),
-            onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => ForYouScreen()));
-            },
-          ),
+          // ListTile(
+          //   leading: const Icon(Icons.collections_bookmark_outlined),
+          //   title: const Text("Reccomendation"),
+          //   onTap: () {
+          //     Navigator.push(context,
+          //         MaterialPageRoute(builder: (context) => ForYouScreen()));
+          //   },
+          // ),
           const Divider(),
           ListTile(
             leading: const Icon(Icons.settings_outlined),
