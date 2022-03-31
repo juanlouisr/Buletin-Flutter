@@ -6,6 +6,7 @@ const String baseUrl = "10.0.2.2:8080";
 const String driveUrl = "https://drive.google.com/uc?id=";
 const String channelListEndpoint = '/channel';
 const String videoListEndpoint = '/video';
+const String categoryEndpoint = '/category';
 const String playlistEndpoint = '/playlist';
 const String loginEndpoint = '/login';
 const String registerEndpoint = '/user';
@@ -24,4 +25,13 @@ const FontWeight titleFontWeight = FontWeight.w500;
 
 TextStyle poppins = GoogleFonts.poppins();
 
-const Color colorPrimary = Color.fromRGBO(255, 130, 130, 100);
+const Color colorPrimary = Color(0xFFFF8282);
+const Color colorGrey = Color(0xFF949494);
+const Color colorBlack = Color(0xFF000000);
+const Color colorWhite = Color(0xFFFFFFFF);
+
+String pictureParser(String picture) {
+  return (picture == "placeholder")
+      ? "175-FYuW9aFusvctqZtoWkXXFmxN45-LN"
+      : picture;
+}

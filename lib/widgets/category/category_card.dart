@@ -28,17 +28,19 @@ class CategoryCard extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => CategoryDetail(
-                        categoryId: category.categoryId,
-                      )),
+                builder: (context) => CategoryDetail(
+                  categoryId: category.id,
+                ),
+              ),
             );
           },
           child: Stack(
             alignment: Alignment.center,
             children: [
-              const AspectRatioImageNetwork(
-                  image: 'http://www.fnordware.com/superpng/pnggrad16rgb.png',
-                  aspectRatio: 2.6),
+              AspectRatioImageNetwork(
+                image: category.getPictureUrl(),
+                aspectRatio: 2.6,
+              ),
               Center(
                 child: Text(
                   category.name,

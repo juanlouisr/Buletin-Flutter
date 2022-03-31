@@ -50,7 +50,11 @@ class SearchResultScreen extends StatelessWidget {
             ),
             Expanded(
               child: FutureBuilder(
-                future: VideoAPI.getVideoDataSearch(titleSearch),
+                future: VideoAPI.getVideos(
+                  pageNo: 1,
+                  pageSize: 1000,
+                  title: titleSearch,
+                ),
                 builder: (context, snapshot) {
                   if (snapshot.data == null) {
                     return const Center(

@@ -18,8 +18,11 @@ class _VideoListState extends State<VideoList> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(4 * marginSize),
-      child: FutureBuilder<List<VideoInfo>> (
-        future: VideoAPI.getVideoData(1, 8),
+      child: FutureBuilder<List<VideoInfo>>(
+        future: VideoAPI.getVideos(
+          pageNo: 1,
+          pageSize: 8,
+        ),
         builder: (context, snapshot) {
           if (snapshot.data == null) {
             return const Center(
@@ -27,24 +30,23 @@ class _VideoListState extends State<VideoList> {
             );
           } else {
             return SizedBox(
-              width: double.infinity,
-              height: 250,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: (snapshot.data ?? []).length,
-                itemBuilder: (context, i) {
-                  return Container(
-                    height: 200,
-                    width: 400,
-                    margin: EdgeInsets.only(right: 10, left: 10),
-                    child: GridTile(
-                      child: VideoCard(
-                    videoInfo: (snapshot.data as List<VideoInfo>)[i],
-                  )),
-                  );
-                },
-              )
-            );
+                width: double.infinity,
+                height: 250,
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: (snapshot.data ?? []).length,
+                  itemBuilder: (context, i) {
+                    return Container(
+                      height: 200,
+                      width: 400,
+                      margin: const EdgeInsets.only(right: 10, left: 10),
+                      child: GridTile(
+                          child: VideoCard(
+                        videoInfo: (snapshot.data as List<VideoInfo>)[i],
+                      )),
+                    );
+                  },
+                ));
           }
         },
       ),
