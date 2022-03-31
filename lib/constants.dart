@@ -6,6 +6,7 @@ const String baseUrl = "10.0.2.2:8080";
 const String driveUrl = "https://drive.google.com/uc?id=";
 const String channelListEndpoint = '/channel';
 const String videoListEndpoint = '/video';
+const String hotEndpoint = videoListEndpoint + "/hot";
 const String categoryEndpoint = '/category';
 const String playlistEndpoint = '/playlist';
 const String loginEndpoint = '/login';
