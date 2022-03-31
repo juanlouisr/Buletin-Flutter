@@ -1,10 +1,15 @@
+import 'package:buletin/api/auth_api.dart';
+import 'package:buletin/api/video_api.dart';
 import 'package:buletin/constants.dart';
+import 'package:buletin/helpers/identifier.dart';
+import 'package:buletin/models/account.dart';
 import 'package:buletin/models/video_info.dart';
 import 'package:buletin/screens/channel_screen.dart';
 import 'package:buletin/widgets/other/aspect_ratio_image.dart';
 import 'package:flutter/material.dart';
 import 'package:buletin/screens/show.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class VideoCard extends StatelessWidget {
@@ -194,10 +199,24 @@ class VideoCardNew extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var isLoggedIn = context.watch<AuthApi>().isAuth;
+    Account? account;
+    if (isLoggedIn) {
+      var acc = context.read<AuthApi>().account;
+      if (acc is Account) {
+        account = acc;
+      }
+    }
+
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Show(videoInfo)));
+        String? identifier = account?.accountId.toString();
+        Identifier.getDeviceId().then((value) {
+          identifier ??= value;
+          VideoAPI.createVideoView(videoInfo.videoId, identifier!);
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Show(videoInfo)));
+        });
       },
       child: SizedBox(
         width: 235,

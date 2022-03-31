@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const NewVideoComponent(),
             const SizedBox(height: 10,),
             VideoListParted(
-              future: VideoAPI.getVideos(pageNo: 1, pageSize: 8),
+              future: VideoAPI.getHotVideos(limit: 8, nLastDay: 7),
               title: "Hot Videos",
               leading: Padding(
                 padding: const EdgeInsets.all(8).copyWith(bottom: 9),
@@ -45,6 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
+            const SizedBox(height: 10,),
             VideoListParted(
               future: VideoAPI.getVideoByInterests(1, 8),
               title: "For You",
