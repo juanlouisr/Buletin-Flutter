@@ -31,8 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: CustomAppBar(),
       body: ListView(
         children: [
-          TitleHome('New Release'),
-          VideoList(),
+          const NewVideoComponent(),
           TitleHome('Channel'),
           ChannelList(),
         ],
