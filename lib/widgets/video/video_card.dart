@@ -216,12 +216,19 @@ class VideoCardNew extends StatelessWidget {
                   if (loadingProgress == null) {
                     return child;
                   }
-                  return Center(
-                    child: CircularProgressIndicator(
-                      value: loadingProgress.expectedTotalBytes != null
-                          ? loadingProgress.cumulativeBytesLoaded /
-                              loadingProgress.expectedTotalBytes!
-                          : null,
+                  return Container(
+                    width: 235,
+                    height: 150,
+                    decoration: BoxDecoration(
+                      color: colorPrimary.withOpacity(0.1),
+                    ),
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
                     ),
                   );
                 },
@@ -236,27 +243,23 @@ class VideoCardNew extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Flexible(
-                    child: Text(
-                      videoInfo.title,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: poppins.copyWith(
-                        fontSize: 15.0,
-                        fontWeight: FontWeight.bold,
-                        color: titleColor ?? colorBlack,
-                      ),
+                  Text(
+                    videoInfo.title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: poppins.copyWith(
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.bold,
+                      color: titleColor ?? colorBlack,
                     ),
                   ),
-                  Flexible(
-                    child: Text(
-                      '${videoInfo.getVideoCount()} views  ●  ${videoInfo.getTimeago()}',
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: poppins.copyWith(
-                        fontSize: 14.0,
-                        color: colorGrey,
-                      ),
+                  Text(
+                    '${videoInfo.getVideoCount()} views  ●  ${videoInfo.getTimeago()}',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: poppins.copyWith(
+                      fontSize: 14.0,
+                      color: colorGrey,
                     ),
                   ),
                 ],

@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: appName,
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        primaryColor: Colors.blue,
+        primarySwatch: primarySwatch,
+        fontFamily: poppins.fontFamily,
       ),
       home: HomeScreen(),
     );

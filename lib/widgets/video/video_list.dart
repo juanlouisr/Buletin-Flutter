@@ -4,6 +4,7 @@ import 'package:buletin/models/video_info.dart';
 import 'package:buletin/screens/show.dart';
 import 'package:buletin/widgets/video/video_card.dart';
 import 'package:flutter/material.dart';
+import 'dart:math' as math;
 
 class VideoListHorizontal extends StatelessWidget {
   final Future<List<VideoInfo>> future;
@@ -17,7 +18,7 @@ class VideoListHorizontal extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(4 * marginSize),
+      margin: const EdgeInsets.all(20),
       child: FutureBuilder<List<VideoInfo>>(
         future: future,
         builder: (context, snapshot) {
@@ -73,10 +74,8 @@ class NewVideoComponent extends StatelessWidget {
             height: contentHeight,
             child: GestureDetector(
               onTap: () {
-                Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => Show(videoInfo)));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => Show(videoInfo)));
               },
               child: Stack(
                 children: [
@@ -123,7 +122,7 @@ class NewVideoComponent extends StatelessWidget {
                     ),
                   ),
                   Positioned(
-                    bottom: 0,
+                    bottom: -20,
                     left: 0,
                     right: 0,
                     child: Column(
@@ -173,6 +172,104 @@ class NewVideoComponent extends StatelessWidget {
           );
         }
       },
+    );
+  }
+}
+
+class VideoListParted extends StatefulWidget {
+  final Future<List<VideoInfo>> future;
+  final String title;
+  final Widget? leading;
+
+
+  const VideoListParted({
+    Key? key,
+    required this.future,
+    required this.title,
+    this.leading,
+  }) : super(key: key);
+
+  @override
+  State<VideoListParted> createState() => _VideoListPartedState();
+}
+
+class _VideoListPartedState extends State<VideoListParted> {
+  final List<VideoInfo> videoList = [];
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            height: 40,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    widget.leading ?? Container(),
+                    Text(
+                      widget.title,
+                      style: poppins.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    Text(
+                      "Urutkan",
+                      style: poppins.copyWith(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    const SizedBox(width: 10),
+                    Transform(
+                      alignment: Alignment.center,
+                      transform: Matrix4.rotationY(math.pi),
+                      child: const Icon(Icons.sort_rounded),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10,),
+          FutureBuilder(
+          future: widget.future,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              if (snapshot.data != null) {
+                videoList.clear();
+                videoList.addAll((snapshot.data as List<VideoInfo>));
+                return GridView.builder(
+                  shrinkWrap: true,
+                  // Untuk sekarang dibuat not scrollable
+                  physics: const NeverScrollableScrollPhysics(),
+                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 235,
+                    crossAxisSpacing: 12,
+                  ),
+                  itemCount: videoList.length,
+                  itemBuilder: (context, i) {
+                    var video = videoList[i];
+                    return VideoCardNew(videoInfo: video);
+                  }
+                );
+              }
+              
+            }
+            return const CircularProgressIndicator();
+          },
+        )
+        ],
+      ),
     );
   }
 }

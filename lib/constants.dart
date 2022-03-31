@@ -26,10 +26,32 @@ const FontWeight titleFontWeight = FontWeight.w500;
 
 TextStyle poppins = GoogleFonts.poppins();
 
-const Color colorPrimary = Color(0xFFFF8282);
+const Color colorPrimary = Color(0xFFFF6868);
 const Color colorGrey = Color(0xFF949494);
 const Color colorBlack = Color(0xFF000000);
 const Color colorWhite = Color(0xFFFFFFFF);
+
+const Map<int, Color> kPrimarySwatch = {
+  50: Color(0xFFFFD7C2),
+
+};
+
+
+MaterialColor primarySwatch = const MaterialColor(
+    0xFFFF6868,
+    <int, Color>{
+       50: Color.fromARGB(255, 255, 187, 187),
+      100: Color.fromARGB(255, 248, 163, 163),
+      200: Color.fromARGB(255, 252, 143, 143),
+      300: Color(0xFFFF8282),
+      400: Color.fromARGB(255, 252, 119, 119),
+      500: Color.fromARGB(255, 255, 98, 98),
+      600: Color.fromARGB(255, 252, 86, 86),
+      700: Color.fromARGB(255, 252, 68, 68),
+      800: Color.fromARGB(255, 255, 50, 50),
+      900: Color.fromARGB(255, 247, 18, 18),
+    },
+  );
 
 String pictureParser(String picture) {
   return (picture == "placeholder")
