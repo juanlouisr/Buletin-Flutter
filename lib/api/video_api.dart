@@ -75,6 +75,27 @@ class VideoAPI {
     return videoList;
   }
 
+  static Future<List<VideoInfo>> getHotVideos({
+    int? limit,
+    int? nLastDay,
+  }) async {
+    final queryParams = {
+      'limit': limit?.toString(),
+      'n_last_day': nLastDay?.toString(),
+    };
+
+    var uri = Uri.http(baseUrl, hotEndpoint, queryParams);
+    var response = await http.get(uri);
+    var jsonData = jsonDecode(response.body);
+
+    List<VideoInfo> videoList = [];
+    for (var u in jsonData['data']['videos']) {
+      var vid = VideoInfo.fromMap(u);
+      videoList.add(vid);
+    }
+    return videoList;
+  }
+
   static Future<void> createVideoView(String videoId, String identifier) async {
     var url = Uri.http(baseUrl, forgotPasswordEndpoint);
     var body = jsonEncode({
