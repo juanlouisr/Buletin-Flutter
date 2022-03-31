@@ -57,3 +57,98 @@ class CategoryCard extends StatelessWidget {
     );
   }
 }
+
+class CategoryCardNew extends StatelessWidget {
+  final Category category;
+  final Color? titleColor;
+
+  const CategoryCardNew({
+    Key? key,
+    required this.category,
+    this.titleColor,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => CategoryDetail(
+                categoryId: category.id,
+              ),
+            ));
+      },
+      child: SizedBox(
+        width: 150,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(3),
+              child: Image.network(
+                category.getPictureUrl(),
+                width: 150,
+                height: 235,
+                fit: BoxFit.cover,
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  }
+                  return Container(
+                    width: 150,
+                    height: 235,
+                    decoration: BoxDecoration(
+                      color: colorPrimary.withOpacity(0.1),
+                    ),
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 2),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    category.name,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: poppins.copyWith(
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.bold,
+                      color: titleColor ?? colorBlack,
+                    ),
+                  ),
+                  Text(
+                    "? playlist",
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: poppins.copyWith(
+                      fontSize: 14.0,
+                      color: colorGrey,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

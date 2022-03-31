@@ -21,7 +21,7 @@ class CategoryList extends StatelessWidget {
               return ResponsiveGridRow(
                   children: categories
                       .map((e) => ResponsiveGridCol(
-                            child: CategoryCard(
+                            child: CategoryCardNew(
                               category: e,
                             ),
                             xs: 12,
