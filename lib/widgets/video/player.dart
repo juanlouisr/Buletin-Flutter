@@ -33,10 +33,7 @@ class _PlayerState extends State<Player> {
 
   Future<void> initializePlayer() async {
     _videoPlayerController1 =
-        // VideoPlayerController.network('https://assets.mixkit.co/videos/preview/mixkit-daytime-city-traffic-aerial-view-56-large.mp4');
-        // VideoPlayerController.network('https://www.youtube.com/watch?v=tU0lQqfbJ-M');
-        VideoPlayerController.network('https://drive.google.com/uc?id=1KAakN-vZtrmTtIlSBn_6NpFAUqwxoFip');
-        // VideoPlayerController.network('https://drive.google.com/uc?export=download&id=1pbGyf7In2gQu0KbTwC1MVCO5IlRxwg2_');
+        VideoPlayerController.network(videoInfo.getVideoUrl());
     await Future.wait([
       _videoPlayerController1.initialize(),
     ]);
@@ -59,20 +56,38 @@ class _PlayerState extends State<Player> {
               _chewieController!
                   .videoPlayerController.value.isInitialized
           ? 
-          AspectRatio(
-            aspectRatio: 1.5,
-            child: Chewie(
-              controller: _chewieController!,
-            ),
-          )
-          : Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
-                CircularProgressIndicator(),
-                SizedBox(height: 20),
-                Text('Loading'),
-              ],
-            ),
+        AspectRatio(
+          aspectRatio: 1.5,
+          child: Chewie(
+            controller: _chewieController!,
+          ),
+        )
+        : Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              CircularProgressIndicator(),
+              SizedBox(height: 20),
+              Text('Loading'),
+            ],
+          ),
+      // child: Image.network(
+      //   videoInfo.getThumbnail(),
+      //   fit: BoxFit.cover,
+      //   loadingBuilder: (BuildContext context, Widget child,
+      //       ImageChunkEvent? loadingProgress) {
+      //     if (loadingProgress == null) {
+      //       return child;
+      //     }
+      //     return Center(
+      //       child: CircularProgressIndicator(
+      //         value: loadingProgress.expectedTotalBytes != null
+      //             ? loadingProgress.cumulativeBytesLoaded /
+      //                 loadingProgress.expectedTotalBytes!
+      //             : null,
+      //       ),
+      //     );
+      //   },
+      // )
     );
   }
 }
