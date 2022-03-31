@@ -265,7 +265,7 @@ class _VideoListPartedState extends State<VideoListParted> {
               }
               
             }
-            return const CircularProgressIndicator();
+            return const Center(child: Text("Tidak ada video"),);
           },
         )
         ],

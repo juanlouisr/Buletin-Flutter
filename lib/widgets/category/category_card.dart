@@ -29,7 +29,7 @@ class CategoryCard extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => CategoryDetail(
-                  categoryId: category.id,
+                  category: category,
                 ),
               ),
             );
@@ -76,12 +76,13 @@ class CategoryCardNew extends StatelessWidget {
             context,
             MaterialPageRoute(
               builder: (context) => CategoryDetail(
-                categoryId: category.id,
+                category: category,
               ),
             ));
       },
-      child: SizedBox(
+      child: Container(
         width: 150,
+        margin: const EdgeInsets.only(bottom: 12),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -90,7 +91,7 @@ class CategoryCardNew extends StatelessWidget {
               child: Image.network(
                 category.getPictureUrl(),
                 width: 150,
-                height: 235,
+                height: 200,
                 fit: BoxFit.cover,
                 loadingBuilder: (BuildContext context, Widget child,
                     ImageChunkEvent? loadingProgress) {
@@ -99,7 +100,7 @@ class CategoryCardNew extends StatelessWidget {
                   }
                   return Container(
                     width: 150,
-                    height: 235,
+                    height: 200,
                     decoration: BoxDecoration(
                       color: colorPrimary.withOpacity(0.1),
                     ),
