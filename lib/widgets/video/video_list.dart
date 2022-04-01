@@ -181,7 +181,6 @@ class VideoListParted extends StatefulWidget {
   final String title;
   final Widget? leading;
 
-
   const VideoListParted({
     Key? key,
     required this.future,
@@ -240,34 +239,37 @@ class _VideoListPartedState extends State<VideoListParted> {
               ],
             ),
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           FutureBuilder(
-          future: widget.future,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              if (snapshot.data != null) {
-                videoList.clear();
-                videoList.addAll((snapshot.data as List<VideoInfo>));
-                return GridView.builder(
-                  shrinkWrap: true,
-                  // Untuk sekarang dibuat not scrollable
-                  physics: const NeverScrollableScrollPhysics(),
-                  gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                    maxCrossAxisExtent: 235,
-                    crossAxisSpacing: 12,
-                  ),
-                  itemCount: videoList.length,
-                  itemBuilder: (context, i) {
-                    var video = videoList[i];
-                    return VideoCardNew(videoInfo: video);
-                  }
-                );
+            future: widget.future,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                if (snapshot.data != null) {
+                  videoList.clear();
+                  videoList.addAll((snapshot.data as List<VideoInfo>));
+                  return GridView.builder(
+                      shrinkWrap: true,
+                      // Untuk sekarang dibuat not scrollable
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithMaxCrossAxisExtent(
+                        maxCrossAxisExtent: 235,
+                        crossAxisSpacing: 12,
+                      ),
+                      itemCount: videoList.length,
+                      itemBuilder: (context, i) {
+                        var video = videoList[i];
+                        return VideoCardNew(videoInfo: video);
+                      });
+                }
               }
-              
-            }
-            return const Center(child: Text("Tidak ada video"),);
-          },
-        )
+              return const Center(
+                child: Text("No Videos"),
+              );
+            },
+          )
         ],
       ),
     );
