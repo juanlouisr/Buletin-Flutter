@@ -24,7 +24,7 @@ class VideoPlayer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Player(videoInfo),
+          Player(videoInfo: videoInfo),
           Container(
             padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
             child: Text(
