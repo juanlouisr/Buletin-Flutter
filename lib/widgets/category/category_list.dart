@@ -11,30 +11,36 @@ class CategoryList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(30),
-      child: Center(
-        child: FutureBuilder(
-          future: CategoryAPI.getCategory(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              final categories = snapshot.data as List<Category>;
-              return ResponsiveGridRow(
-                  children: categories
-                      .map((e) => ResponsiveGridCol(
-                            child: CategoryCard(
-                              category: e,
-                            ),
-                            xs: 12,
-                            md: 4,
-                          ))
-                      .toList());
-            } else {
-              return const Center(
-                child: Text("Tidak ada category"),
-              );
-            }
-          },
-        ),
+      padding: const EdgeInsets.all(20).copyWith(top: 0),
+      child: FutureBuilder(
+        future: CategoryAPI.getCategory(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) { 
+            final categories = snapshot.data as List<Category>;
+            return ResponsiveGridRow(
+                children: [...categories
+                    .map((e) => ResponsiveGridCol(
+                          child: CategoryCardNew(
+                            category: e,
+                          ),
+                          lg: 2,
+                          md: 3,
+                        ))
+                    .toList(), ...categories
+                    .map((e) => ResponsiveGridCol(
+                          child: CategoryCardNew(
+                            category: e,
+                          ),
+                          lg: 2,
+                          md: 3,
+                        ))
+                    .toList()]);
+          } else {
+            return const Center(
+              child: Text("Tidak ada category"),
+            );
+          }
+        },
       ),
     );
   }
