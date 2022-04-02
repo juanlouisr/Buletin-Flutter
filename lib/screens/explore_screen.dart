@@ -17,9 +17,10 @@ class ExploreScreen extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.only(
-              top: 30,
-              left: 120,
-              right: 120,
+              top: 20,
+              left: 100,
+              right: 100,
+              bottom: 20,
             ),
             child: RoundedSearchInput(
               textController: textController,

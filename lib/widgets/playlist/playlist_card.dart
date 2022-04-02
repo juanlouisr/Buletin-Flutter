@@ -20,7 +20,7 @@ class PlaylistCard extends StatelessWidget {
         Card(
           clipBehavior: Clip.antiAliasWithSaveLayer,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(cardBorderRadius),
+            borderRadius: BorderRadius.circular(5),
           ),
           child: InkWell(
             onTap: () {
@@ -33,7 +33,7 @@ class PlaylistCard extends StatelessWidget {
             child: Stack(
               children: [
                 AspectRatioImageNetwork(
-                  image: playlistInfo.thumbnail,
+                  image: playlistInfo.getPictureUrl(),
                   aspectRatio: 2.2,
                 ),
                 Positioned(
@@ -42,8 +42,8 @@ class PlaylistCard extends StatelessWidget {
                   bottom: 0,
                   child: Container(
                     // height: 100,
-                    padding: const EdgeInsets.all(8.0),
-                    width: 60,
+                    padding: const EdgeInsets.all(10),
+                    width: 90,
                     color: const Color.fromRGBO(0, 0, 0, 0.6),
                     child: Center(
                       child: Text(
@@ -51,10 +51,11 @@ class PlaylistCard extends StatelessWidget {
                         playlistInfo.videos.length.toString() + ' videos',
                         maxLines: 2,
                         textAlign: TextAlign.center,
-                        style: Theme.of(context)
-                            .textTheme
-                            .caption!
-                            .copyWith(color: Colors.white),
+                        style: poppins.copyWith(
+                          color: colorWhite,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -66,10 +67,12 @@ class PlaylistCard extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(4),
           child: Text(
-            playlistInfo.playlistName,
+            playlistInfo.name,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: Theme.of(context).textTheme.titleLarge,
+            style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
           ),
         ),
       ],

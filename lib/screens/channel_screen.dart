@@ -1,4 +1,3 @@
-import 'package:buletin/constants.dart';
 import 'package:buletin/widgets/other/sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_grid/responsive_grid.dart';
@@ -21,7 +20,11 @@ class ChannelScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(),
       body: FutureBuilder(
-        future: VideoAPI.getChannelVideos(1, 4, channel.channelId),
+        future: VideoAPI.getVideos(
+          pageNo: 1,
+          pageSize: 4,
+          channelId: channel.channelId,
+        ),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             if (snapshot.data != null) {
@@ -40,7 +43,9 @@ class ChannelScreen extends StatelessWidget {
 class ScrollChannelRow extends StatefulWidget {
   final channel;
   final videos;
-  const ScrollChannelRow({Key? key, @required this.videos, @required this.channel}): super(key: key);
+  const ScrollChannelRow(
+      {Key? key, @required this.videos, @required this.channel})
+      : super(key: key);
 
   @override
   _ScrollChannelRow createState() => _ScrollChannelRow();
@@ -66,23 +71,25 @@ class _ScrollChannelRow extends State<ScrollChannelRow> {
           children: [
             TitleHome('Video dari ${channel.channelName}'),
             ResponsiveGridRow(
-              children: videos.map((video) {
-                return ResponsiveGridCol(
+                children: videos.map((video) {
+              return ResponsiveGridCol(
                   xs: 12,
                   md: 6,
                   child: Container(
                     margin: EdgeInsets.all(10),
                     child: VideoCard(videoInfo: video),
-                  )
-                );
-              }).toList()
-            )
+                  ));
+            }).toList())
           ],
         ),
       ),
       onNotification: (notification) {
         if (isCanScroll) {
-          VideoAPI.getChannelVideos(currentPage, 4, channel.channelId).then((res) {
+          VideoAPI.getVideos(
+            pageNo: currentPage,
+            pageSize: 4,
+            channelId: channel.channelId,
+          ).then((res) {
             var data = res as List<VideoInfo>;
             if (data.length > 0) {
               setState(() {

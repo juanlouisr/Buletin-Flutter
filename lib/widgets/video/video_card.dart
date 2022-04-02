@@ -1,10 +1,15 @@
+import 'package:buletin/api/auth_api.dart';
+import 'package:buletin/api/video_api.dart';
 import 'package:buletin/constants.dart';
+import 'package:buletin/helpers/identifier.dart';
+import 'package:buletin/models/account.dart';
 import 'package:buletin/models/video_info.dart';
 import 'package:buletin/screens/channel_screen.dart';
 import 'package:buletin/widgets/other/aspect_ratio_image.dart';
 import 'package:flutter/material.dart';
 import 'package:buletin/screens/show.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 class VideoCard extends StatelessWidget {
@@ -31,7 +36,7 @@ class VideoCard extends StatelessWidget {
         child: Column(
           children: <Widget>[
             AspectRatioImageNetwork(
-                image: videoInfo.getThumbnail()!, aspectRatio: cardAspectRatio),
+                image: videoInfo.getThumbnail(), aspectRatio: cardAspectRatio),
             Padding(
               padding: const EdgeInsets.all(paddingSize),
               child: Column(
@@ -86,7 +91,7 @@ class VideoCardShareable extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => Show(videoInfo)));
               },
               child: AspectRatioImageNetwork(
-                  image: videoInfo.getThumbnail()!,
+                  image: videoInfo.getThumbnail(),
                   aspectRatio: cardAspectRatio),
             ),
             // Positioned(
@@ -172,12 +177,116 @@ class VideoCardShareable extends StatelessWidget {
   void share(BuildContext context) {
     RenderBox? box = context.findRenderObject() as RenderBox;
     final String message =
-        "I found this inspiring videos at Buletin.id. Check this out! ${videoInfo.videoUrl}";
+        "I found this inspiring videos at Buletin.id. Check this out! ${videoInfo.getVideoUrl()}";
 
     Share.share(
       message,
       subject: 'Description',
       sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
+    );
+  }
+}
+
+class VideoCardNew extends StatelessWidget {
+  final VideoInfo videoInfo;
+  final Color? titleColor;
+
+  const VideoCardNew({
+    Key? key,
+    required this.videoInfo,
+    this.titleColor,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    var isLoggedIn = context.watch<AuthApi>().isAuth;
+    Account? account;
+    if (isLoggedIn) {
+      var acc = context.read<AuthApi>().account;
+      if (acc is Account) {
+        account = acc;
+      }
+    }
+
+    return GestureDetector(
+      onTap: () {
+        String? identifier = account?.accountId.toString();
+        Identifier.getDeviceId().then((value) {
+          identifier ??= value;
+          VideoAPI.createVideoView(videoInfo.videoId, identifier!);
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Show(videoInfo)));
+        });
+      },
+      child: SizedBox(
+        width: 235,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(3),
+              child: Image.network(
+                videoInfo.getThumbnail(),
+                width: 235,
+                height: 150,
+                fit: BoxFit.cover,
+                loadingBuilder: (BuildContext context, Widget child,
+                    ImageChunkEvent? loadingProgress) {
+                  if (loadingProgress == null) {
+                    return child;
+                  }
+                  return Container(
+                    width: 235,
+                    height: 150,
+                    decoration: BoxDecoration(
+                      color: colorPrimary.withOpacity(0.1),
+                    ),
+                    child: Center(
+                      child: CircularProgressIndicator(
+                        value: loadingProgress.expectedTotalBytes != null
+                            ? loadingProgress.cumulativeBytesLoaded /
+                                loadingProgress.expectedTotalBytes!
+                            : null,
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 2),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    videoInfo.title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: poppins.copyWith(
+                      fontSize: 15.0,
+                      fontWeight: FontWeight.bold,
+                      color: titleColor ?? colorBlack,
+                    ),
+                  ),
+                  Text(
+                    '${videoInfo.getVideoCount()} views  ●  ${videoInfo.getTimeago()}',
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: poppins.copyWith(
+                      fontSize: 14.0,
+                      color: colorGrey,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
