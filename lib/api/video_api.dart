@@ -96,13 +96,12 @@ class VideoAPI {
     return videoList;
   }
 
-  static Future<void> createVideoView(String videoId, String identifier) async {
-    var url = Uri.http(baseUrl, forgotPasswordEndpoint);
-    var body = jsonEncode({
-      'video_id': videoId,
-      //identifier can be device id if not logged in else user Id
-      'viewer_id': identifier,
-    });
-    await http.post(url, body: body);
+  static Future createVideoView(int videoId, String identifier) async {
+    var url = Uri.http(baseUrl, videoViewEndpoint);
+    var response = await http.post(url, body: jsonEncode({
+      "video_id": videoId,
+      "viewer_id": identifier.toString(),
+    }));
+    print(response.body);
   }
 }
