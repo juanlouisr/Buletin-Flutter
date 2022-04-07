@@ -32,12 +32,6 @@ const Color colorGrey = Color(0xFF949494);
 const Color colorBlack = Color(0xFF000000);
 const Color colorWhite = Color(0xFFFFFFFF);
 
-const Map<int, Color> kPrimarySwatch = {
-  50: Color(0xFFFFD7C2),
-
-};
-
-
 MaterialColor primarySwatch = const MaterialColor(
     0xFFFF6868,
     <int, Color>{
