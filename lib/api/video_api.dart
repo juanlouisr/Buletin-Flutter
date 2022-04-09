@@ -38,7 +38,8 @@ class VideoAPI {
     var jsonData = jsonDecode(response.body);
 
     List<VideoInfo> videoList = [];
-    for (var u in jsonData['data']['videos']) {
+    var data = jsonData['data']['videos'] ?? [];
+    for (var u in data) {
       var vid = VideoInfo.fromMap(u);
       videoList.add(vid);
     }
