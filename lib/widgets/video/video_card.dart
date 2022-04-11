@@ -111,7 +111,7 @@ class VideoCardShareable extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              ChannelScreen(videoInfo.channelInfo)));
+                              ChannelScreen(channelInfo: videoInfo.channelInfo)));
                 },
                 child: CircleAvatar(
                   foregroundImage: NetworkImage(

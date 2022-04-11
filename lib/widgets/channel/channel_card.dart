@@ -15,7 +15,7 @@ class ChannelCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => ChannelScreen(channel)));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => ChannelScreen(channelInfo: channel)));
       },
       child: Container(
         child: Card(

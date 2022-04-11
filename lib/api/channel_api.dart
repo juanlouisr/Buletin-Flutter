@@ -5,10 +5,15 @@ import 'package:buletin/models/channel_info.dart';
 import 'package:http/http.dart' as http;
 
 class ChannelAPI {
-  static Future<List<ChannelInfo>> get() async {
+  static Future<List<ChannelInfo>> get({
+    required int pageNo,
+    required int pageSize,
+    int? ownerId,
+  }) async {
     final queryParams = {
-      'page_no': '1',
-      'page_size': '8',
+      'page_no': pageNo.toString(),
+      'page_size': pageSize.toString(),
+      'owner_id': ownerId.toString(),
     };
     var uri = Uri.http(baseUrl, channelListEndpoint, queryParams);
     var response = await http.get(uri);
