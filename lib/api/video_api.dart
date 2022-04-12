@@ -97,12 +97,34 @@ class VideoAPI {
     return videoList;
   }
 
+  static Future<List<VideoInfo>> getHistoryVideo({
+    required int pageNo,
+    required int pageSize,
+    required String viewerId,
+  }) async {
+    final queryParams = {
+      'page_no': pageNo.toString(),
+      'page_size': pageSize.toString(),
+    };
+
+    var uri = Uri.http(baseUrl, historyEndpoint + '/${viewerId}', queryParams);
+    var response = await http.get(uri);
+    var jsonData = jsonDecode(response.body);
+
+    List<VideoInfo> videoList = [];
+    var data = jsonData['data']['video_history'] ?? [];
+    for (var u in data) {
+      var vid = VideoInfo.fromMap(u);
+      videoList.add(vid);
+    }
+    return videoList;
+  }
+
   static Future createVideoView(int videoId, String identifier) async {
     var url = Uri.http(baseUrl, videoViewEndpoint);
     var response = await http.post(url, body: jsonEncode({
       "video_id": videoId,
       "viewer_id": identifier.toString(),
     }));
-    print(response.body);
   }
 }

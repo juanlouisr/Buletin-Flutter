@@ -8,6 +8,7 @@ import 'package:buletin/models/account.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'dart:convert';
+import 'package:buletin/helpers/identifier.dart';
 
 class AuthApi extends ChangeNotifier {
   bool _isAuth = false;
@@ -16,6 +17,9 @@ class AuthApi extends ChangeNotifier {
 
   Account? _account;
   get account => _account;
+
+  String? _viewerId = '';
+  get viewerId => _viewerId;
 
   Duration get loginTime => Duration(milliseconds: 2250);
 
@@ -50,6 +54,7 @@ class AuthApi extends ChangeNotifier {
 
     if (token == null) {
       _isAuth = false;
+      _viewerId = await Identifier.getDeviceId() ?? '';
       notifyListeners();
       return;
     }
@@ -67,6 +72,7 @@ class AuthApi extends ChangeNotifier {
     var profile = jsonData['data'];
     _account = Account.fromMap(profile, interests);
     _isAuth = true;
+    _viewerId = _account?.accountId.toString();
     notifyListeners();
     return;
   }
@@ -75,6 +81,7 @@ class AuthApi extends ChangeNotifier {
     await Storage.removeToken();
     _account = null;
     _isAuth = false;
+    _viewerId = await Identifier.getDeviceId() ?? '';
     notifyListeners();
   }
 
