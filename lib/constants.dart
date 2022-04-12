@@ -10,6 +10,7 @@ const String videoViewEndpoint = '/video-view';
 const String hotEndpoint = videoListEndpoint + "/hot";
 const String categoryEndpoint = '/category';
 const String playlistEndpoint = '/playlist';
+const String historyEndpoint = '/history';
 const String loginEndpoint = '/login';
 const String registerEndpoint = '/user';
 const String changePasswordEndpoint = '/user';
