@@ -11,10 +11,12 @@ code-quality:
     - ci
   script:
     - flutter pub get
-    - flutter pub run dart_code_metrics:metrics analyze lib > report.txt
+    - dart fix --apply
+    - flutter pub run dart_code_metrics:metrics check-unused-files lib
+    - flutter pub run dart_code_metrics:metrics analyze lib --reporter=html
   artifacts:
     paths:
-      - report.txt
+      - metrics/
     expire_in: 1 week
 
 build:
@@ -25,6 +27,7 @@ build:
   script:
     - flutter clean
     - flutter pub get
+    - flutter pub run dart_code_metrics:metrics check-unused-files lib -d
     - flutter build apk --split-per-abi --release
   artifacts:
     paths:
