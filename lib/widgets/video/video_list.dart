@@ -177,15 +177,19 @@ class NewVideoComponent extends StatelessWidget {
 }
 
 class VideoListParted extends StatefulWidget {
-  final Future<List<VideoInfo>> future;
+  final List<VideoInfo> videos;
+  final bool isShowButton;
   final String title;
   final Widget? leading;
+  final Widget? button;
 
   const VideoListParted({
     Key? key,
-    required this.future,
+    required this.videos,
     required this.title,
+    required this.isShowButton,
     this.leading,
+    this.button,
   }) : super(key: key);
 
   @override
@@ -193,8 +197,6 @@ class VideoListParted extends StatefulWidget {
 }
 
 class _VideoListPartedState extends State<VideoListParted> {
-  final List<VideoInfo> videoList = [];
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -242,34 +244,24 @@ class _VideoListPartedState extends State<VideoListParted> {
           const SizedBox(
             height: 10,
           ),
-          FutureBuilder(
-            future: widget.future,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                if (snapshot.data != null) {
-                  videoList.clear();
-                  videoList.addAll((snapshot.data as List<VideoInfo>));
-                  return GridView.builder(
-                      shrinkWrap: true,
-                      // Untuk sekarang dibuat not scrollable
-                      physics: const NeverScrollableScrollPhysics(),
-                      gridDelegate:
-                          const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 235,
-                        crossAxisSpacing: 12,
-                      ),
-                      itemCount: videoList.length,
-                      itemBuilder: (context, i) {
-                        var video = videoList[i];
-                        return VideoCardNew(videoInfo: video);
-                      });
-                }
-              }
-              return const Center(
-                child: Text("No Videos"),
-              );
-            },
-          )
+          GridView.builder(
+            shrinkWrap: true,
+            // Untuk sekarang dibuat not scrollable
+            physics: const NeverScrollableScrollPhysics(),
+            gridDelegate:
+                const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 235,
+              crossAxisSpacing: 12,
+            ),
+            itemCount: widget.videos.length,
+            itemBuilder: (context, i) {
+              var video = widget.videos[i];
+              return VideoCardNew(videoInfo: video as VideoInfo);
+            }
+          ),
+          if (widget.isShowButton) ...[
+            widget.button ?? Container()
+          ]
         ],
       ),
     );
