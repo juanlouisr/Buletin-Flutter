@@ -14,9 +14,8 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreen extends State<HistoryScreen> {
-  List<VideoInfo> videos = [];
   bool isCanScroll = true;
-  int pageSize = 2;
+  int currentPage = 2;
   ValueNotifier<List<VideoInfo>> videoValueNotifier = ValueNotifier([]);
 
   @override
@@ -30,7 +29,7 @@ class _HistoryScreen extends State<HistoryScreen> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             var resVideos = snapshot.data as List<VideoInfo>;
-            if (pageSize == 2) {
+            if (currentPage == 2) {
               videoValueNotifier.value.addAll(resVideos);
             }
 
@@ -47,12 +46,12 @@ class _HistoryScreen extends State<HistoryScreen> {
                   ),
                   onNotification: (notification) {
                     if (isCanScroll) {
-                      VideoAPI.getHistoryVideo(pageNo: pageSize, pageSize: 12, viewerId: identifier).then((res) {
+                      VideoAPI.getHistoryVideo(pageNo: currentPage, pageSize: 12, viewerId: identifier).then((res) {
                         var data = res as List<VideoInfo>;
                         if (data.length > 0) {
                           setState(() {
                             videoValueNotifier.value.addAll(data);
-                            pageSize += 1;
+                            currentPage += 1;
                           });
                         } else {
                           isCanScroll = false;
