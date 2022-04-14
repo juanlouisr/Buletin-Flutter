@@ -14,20 +14,20 @@ class ExploreScreen extends StatelessWidget {
     return Scaffold(
       appBar: CustomAppBar(),
       body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 20,
-              left: 100,
-              right: 100,
-              bottom: 20,
-            ),
-            child: RoundedSearchInput(
-              textController: textController,
-              hintText: "Cari video",
-            ),
-          ),
-          const CategoryList(),
+        children: const [
+          // Padding(
+          //   padding: const EdgeInsets.only(
+          //     top: 20,
+          //     left: 100,
+          //     right: 100,
+          //     bottom: 20,
+          //   ),
+          //   child: RoundedSearchInput(
+          //     textController: textController,
+          //     hintText: "Cari video",
+          //   ),
+          // ),
+          CategoryList(),
         ],
       ),
       drawer: const SideNavigationBar(),
