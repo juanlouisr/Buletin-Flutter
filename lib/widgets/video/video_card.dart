@@ -111,7 +111,7 @@ class VideoCardShareable extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              ChannelScreen(videoInfo.channelInfo)));
+                              ChannelScreen(channelInfo: videoInfo.channelInfo)));
                 },
                 child: CircleAvatar(
                   foregroundImage: NetworkImage(
@@ -199,24 +199,13 @@ class VideoCardNew extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var isLoggedIn = context.watch<AuthApi>().isAuth;
-    Account? account;
-    if (isLoggedIn) {
-      var acc = context.read<AuthApi>().account;
-      if (acc is Account) {
-        account = acc;
-      }
-    }
+    String? identifier = context.read<AuthApi>().viewerId;
 
     return GestureDetector(
       onTap: () {
-        String? identifier = account?.accountId.toString();
-        Identifier.getDeviceId().then((value) {
-          identifier ??= value;
-          VideoAPI.createVideoView(videoInfo.videoId, identifier!);
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => Show(videoInfo)));
-        });
+        VideoAPI.createVideoView(videoInfo.videoId, identifier!);
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => Show(videoInfo)));
       },
       child: SizedBox(
         width: 235,

@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:buletin/screens/home_screen.dart';
 import 'package:buletin/api/interest_api.dart';
 import 'package:buletin/widgets/other/appbar.dart';
+import 'package:buletin/constants.dart';
 
 class InterestChooseScreen extends StatefulWidget {
   final SignupData signupData;
@@ -25,7 +26,7 @@ class _InterestChooseScreen extends State<InterestChooseScreen> {
     return Scaffold(
         drawer: const SideNavigationBar(),
         appBar: CustomAppBar(),
-        backgroundColor: Colors.blue,
+        backgroundColor: colorPrimary,
         body: Center(
           child: Expanded(
             child: Column(
@@ -59,7 +60,7 @@ class _InterestChooseScreen extends State<InterestChooseScreen> {
                               wrapped: true,
                               choiceStyle: C2ChoiceStyle(
                                 labelStyle: TextStyle(color: Colors.black),
-                                color: Colors.blue,
+                                color: colorPrimary,
                                 margin: EdgeInsets.all(10),
                                 padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20)
                               ),
@@ -77,7 +78,7 @@ class _InterestChooseScreen extends State<InterestChooseScreen> {
                             style: TextStyle(color: Colors.white),
                           ),
                           padding: EdgeInsets.symmetric(horizontal: 0, vertical: 20),
-                          backgroundColor: Colors.blue,
+                          backgroundColor: colorPrimary,
                           radius: 20,
                           onPressed: () async {
                             var interestString = interests.join(',');

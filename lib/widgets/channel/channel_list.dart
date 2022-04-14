@@ -13,7 +13,7 @@ class ChannelList extends StatelessWidget {
         width: double.infinity,
         height: 500,
         child: FutureBuilder(
-          future: ChannelAPI.get(),
+          future: ChannelAPI.get(pageNo: 1, pageSize: 8),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data != null) {

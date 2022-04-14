@@ -3,6 +3,7 @@ import 'package:buletin/screens/explore_screen.dart';
 import 'package:buletin/screens/home_screen.dart';
 import 'package:buletin/screens/login_screen.dart';
 import 'package:buletin/screens/profile_screen.dart';
+import 'package:buletin/screens/history_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:buletin/api/auth_api.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -69,7 +70,10 @@ class SideNavigationBar extends StatelessWidget {
               height: 24,
             ),
             title: const Text("History"),
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HistoryScreen()));
+            },
           ),
           ListTile(
             leading: SvgPicture.asset(
