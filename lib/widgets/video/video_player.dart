@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:buletin/models/video_info.dart';
 import 'package:buletin/widgets/channel/channel.dart';
 import 'package:buletin/widgets/video/player.dart';
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:responsive_grid/responsive_grid.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:buletin/screens/channel_screen.dart';

@@ -2,7 +2,7 @@ import 'package:buletin/api/interest_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_login/flutter_login.dart';
 import 'package:http/http.dart' as http;
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:buletin/helpers/storage.dart';
 import 'package:buletin/models/account.dart';
 import 'package:jwt_decode/jwt_decode.dart';

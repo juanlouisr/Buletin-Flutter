@@ -1,4 +1,4 @@
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:buletin/models/channel_info.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:intl/intl.dart';

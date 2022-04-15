@@ -1,5 +1,5 @@
 import 'package:buletin/api/auth_api.dart';
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:buletin/widgets/other/appbar.dart';
 import 'package:buletin/widgets/other/rounded_password_field.dart';
 import 'package:flutter/material.dart';

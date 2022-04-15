@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:buletin/models/video_info.dart';
 import 'package:buletin/screens/show.dart';
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 
 class VideoCardShow extends StatelessWidget {
   late VideoInfo videoInfo;

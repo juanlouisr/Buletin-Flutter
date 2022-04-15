@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:buletin/models/channel_info.dart';
 
 class ChannelInformation extends StatefulWidget {

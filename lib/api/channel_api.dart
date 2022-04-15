@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:buletin/models/channel_info.dart';
 import 'package:http/http.dart' as http;
 

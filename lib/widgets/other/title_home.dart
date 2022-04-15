@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 
 class TitleHome extends StatelessWidget {
   late String title;

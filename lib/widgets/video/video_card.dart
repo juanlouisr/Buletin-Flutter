@@ -1,6 +1,6 @@
 import 'package:buletin/api/auth_api.dart';
 import 'package:buletin/api/video_api.dart';
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:buletin/helpers/identifier.dart';
 import 'package:buletin/models/account.dart';
 import 'package:buletin/models/video_info.dart';
