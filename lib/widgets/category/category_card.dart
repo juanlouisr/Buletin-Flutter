@@ -1,4 +1,4 @@
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:buletin/models/category.dart';
 import 'package:buletin/widgets/category/category_detail.dart';
 import 'package:buletin/widgets/other/aspect_ratio_image.dart';
@@ -136,7 +136,7 @@ class CategoryCardNew extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "? playlist",
+                    "2 playlist",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: poppins.copyWith(

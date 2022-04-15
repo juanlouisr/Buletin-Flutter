@@ -1,7 +1,9 @@
 import 'package:buletin/api/video_api.dart';
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/array_utils.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:buletin/models/video_info.dart';
 import 'package:buletin/screens/show.dart';
+import 'package:buletin/widgets/other/popup_menu.dart';
 import 'package:buletin/widgets/video/video_card.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
@@ -221,22 +223,110 @@ class _VideoListPartedState extends State<VideoListParted> {
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    Text(
-                      "Urutkan",
-                      style: poppins.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                // const SizedBox(width: 10),
+                CustomPopUpMenu(
+                  menuList: [
+                    PopupMenuItem(
+                      child: CustomPopUpMenu(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text("View Count"),
+                            Icon(Icons.chevron_right_rounded),
+                          ],
+                        ),
+                        menuList: [
+                          PopupMenuItem(
+                            child: const Text("Asc"),
+                            onTap: () {
+                              setState(() {
+                                ArrayUtils.sortVideoListByViewCountAsc(
+                                    widget.videos);
+                              });
+                            },
+                          ),
+                          PopupMenuItem(
+                            child: const Text("Desc"),
+                            onTap: () {
+                              setState(() {
+                                ArrayUtils.sortVideoListByViewCount(
+                                    widget.videos);
+                              });
+                            },
+                          )
+                        ],
                       ),
                     ),
-                    const SizedBox(width: 10),
-                    Transform(
-                      alignment: Alignment.center,
-                      transform: Matrix4.rotationY(math.pi),
-                      child: const Icon(Icons.sort_rounded),
+                    PopupMenuItem(
+                      child: CustomPopUpMenu(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text("Date Posted"),
+                            Icon(Icons.chevron_right_rounded),
+                          ],
+                        ),
+                        menuList: [
+                          PopupMenuItem(
+                            child: const Text("Asc"),
+                            onTap: () {
+                              setState(() {
+                                ArrayUtils.sortVideoListByDateAsc(
+                                    widget.videos);
+                              });
+                            },
+                          ),
+                          PopupMenuItem(
+                            child: const Text("Desc"),
+                            onTap: () {
+                              setState(() {
+                                ArrayUtils.sortVideoListByDate(
+                                    widget.videos);
+                              });
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem(
+                      child: CustomPopUpMenu(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text("Filter"),
+                            Icon(Icons.chevron_right_rounded),
+                          ],
+                        ),
+                        menuList: [
+                          PopupMenuItem(
+                            child: const Text("Date"),
+                            onTap: () {},
+                          ),
+                          PopupMenuItem(
+                            child: const Text("Interest"),
+                            onTap: () {},
+                          )
+                        ],
+                      ),
                     ),
                   ],
+                  child: Row(
+                    children: [
+                      Text(
+                        "Urutkan",
+                        style: poppins.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      const SizedBox(width: 10),
+                      Transform(
+                        alignment: Alignment.center,
+                        transform: Matrix4.rotationY(math.pi),
+                        child: const Icon(Icons.sort_rounded),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -245,23 +335,19 @@ class _VideoListPartedState extends State<VideoListParted> {
             height: 10,
           ),
           GridView.builder(
-            shrinkWrap: true,
-            // Untuk sekarang dibuat not scrollable
-            physics: const NeverScrollableScrollPhysics(),
-            gridDelegate:
-                const SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 235,
-              crossAxisSpacing: 12,
-            ),
-            itemCount: widget.videos.length,
-            itemBuilder: (context, i) {
-              var video = widget.videos[i];
-              return VideoCardNew(videoInfo: video as VideoInfo);
-            }
-          ),
-          if (widget.isShowButton) ...[
-            widget.button ?? Container()
-          ]
+              shrinkWrap: true,
+              // Untuk sekarang dibuat not scrollable
+              physics: const NeverScrollableScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+                maxCrossAxisExtent: 235,
+                crossAxisSpacing: 12,
+              ),
+              itemCount: widget.videos.length,
+              itemBuilder: (context, i) {
+                var video = widget.videos[i];
+                return VideoCardNew(videoInfo: video);
+              }),
+          if (widget.isShowButton) ...[widget.button ?? Container()]
         ],
       ),
     );

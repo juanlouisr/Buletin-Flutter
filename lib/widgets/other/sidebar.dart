@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:buletin/api/auth_api.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:buletin/utils/extension_image.dart';
 
 class SideNavigationBar extends StatelessWidget {
   const SideNavigationBar({Key? key}) : super(key: key);
@@ -65,9 +66,7 @@ class SideNavigationBar extends StatelessWidget {
           ),
           ListTile(
             leading: SvgPicture.asset(
-              "assets/svg/rotate-left.svg",
-              width: 24,
-              height: 24,
+              'rotate-left'.svg,
             ),
             title: const Text("History"),
             onTap: () {
@@ -77,9 +76,7 @@ class SideNavigationBar extends StatelessWidget {
           ),
           ListTile(
             leading: SvgPicture.asset(
-              "assets/svg/home.svg",
-              width: 24,
-              height: 24,
+              'home'.svg,
             ),
             title: const Text("Home"),
             onTap: () {
@@ -89,9 +86,7 @@ class SideNavigationBar extends StatelessWidget {
           ),
           ListTile(
             leading: SvgPicture.asset(
-              "assets/svg/search.svg",
-              width: 24,
-              height: 24,
+              'grid-4'.svg,
             ),
             title: const Text("Explore"),
             onTap: () {
@@ -110,18 +105,14 @@ class SideNavigationBar extends StatelessWidget {
           const Divider(),
           ListTile(
             leading: SvgPicture.asset(
-              "assets/svg/settings.svg",
-              width: 24,
-              height: 24,
+              'settings'.svg,
             ),
             title: const Text("Settings"),
             onTap: () {},
           ),
           ListTile(
             leading: SvgPicture.asset(
-              "assets/svg/question-circle.svg",
-              width: 24,
-              height: 24,
+              'question-circle'.svg,
             ),
             title: const Text("Help & Suggestion"),
             onTap: () {},
@@ -130,9 +121,7 @@ class SideNavigationBar extends StatelessWidget {
           if (isLoggedIn) ...[
             ListTile(
               leading: SvgPicture.asset(
-                "assets/svg/logout.svg",
-                width: 24,
-                height: 24,
+                'logout'.svg,
               ),
               title: const Text("Logout"),
               onTap: () {
@@ -142,9 +131,7 @@ class SideNavigationBar extends StatelessWidget {
           ] else ...[
             ListTile(
               leading: SvgPicture.asset(
-                "assets/svg/login.svg",
-                width: 24,
-                height: 24,
+                'login'.svg,
               ),
               title: const Text("Login"),
               onTap: () {

@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:buletin/screens/home_screen.dart';
 import 'package:buletin/api/interest_api.dart';
 import 'package:buletin/widgets/other/appbar.dart';
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 
 class InterestChooseScreen extends StatefulWidget {
   final SignupData signupData;

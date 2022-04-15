@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:buletin/widgets/other/aspect_ratio_image.dart';
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:buletin/screens/channel_screen.dart';
 import 'package:buletin/models/channel_info.dart';
 
