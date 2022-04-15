@@ -1,9 +1,6 @@
 import 'package:buletin/api/video_api.dart';
-import 'package:buletin/constants.dart';
 import 'package:buletin/models/video_info.dart';
-import 'package:buletin/widgets/other/title_home.dart';
-import 'package:buletin/widgets/search/searchbar.dart';
-import 'package:buletin/widgets/video/video_card.dart';
+import 'package:buletin/widgets/other/appbar.dart';
 import 'package:buletin/widgets/video/video_list.dart';
 import 'package:flutter/material.dart';
 
@@ -29,16 +26,7 @@ class _SearchResultScreen extends State<SearchResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: const <Widget>[
-            Text(
-              appName,
-            ),
-          ],
-        ),
-      ),
+      appBar: const CustomAppBar(),
       body: FutureBuilder<dynamic> (
         future: VideoAPI.getVideos(pageNo: 1, pageSize: 12, title: widget.titleSearch),
         builder: (context, snapshot) {
@@ -62,10 +50,9 @@ class _SearchResultScreen extends State<SearchResultScreen> {
                   onNotification: (notification) {
                     if (isCanScroll) {
                       VideoAPI.getVideos(pageNo: currentPage, pageSize: 12, title: widget.titleSearch).then((res) {
-                        var data = res as List<VideoInfo>;
-                        if (data.length > 0) {
+                        if (res.isNotEmpty) {
                           setState(() {
-                            videoValueNotifier.value.addAll(data);
+                            videoValueNotifier.value.addAll(res);
                             currentPage += 1;
                           });
                         } else {
@@ -84,7 +71,7 @@ class _SearchResultScreen extends State<SearchResultScreen> {
             );
           }
 
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         },
       ),
     );

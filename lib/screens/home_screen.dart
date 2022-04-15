@@ -10,6 +10,7 @@ import 'package:buletin/api/auth_api.dart';
 import 'package:buletin/widgets/other/appbar.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:buletin/utils/extension_image.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -37,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const SideNavigationBar(),
-      appBar: CustomAppBar(),
+      appBar: const CustomAppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -54,7 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     leading: Padding(
                       padding: const EdgeInsets.all(8).copyWith(bottom: 9),
                       child: SvgPicture.asset(
-                        "assets/svg/flame.svg",
+                        'flame'.svg,
                         width: 20,
                         height: 20,
                       ),
