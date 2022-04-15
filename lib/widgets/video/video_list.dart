@@ -199,7 +199,6 @@ class VideoListParted extends StatefulWidget {
 }
 
 class _VideoListPartedState extends State<VideoListParted> {
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -224,105 +223,110 @@ class _VideoListPartedState extends State<VideoListParted> {
                     ),
                   ],
                 ),
-                Row(
-                  children: [
-                    Text(
-                      "Urutkan",
-                      style: poppins.copyWith(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
+                // const SizedBox(width: 10),
+                CustomPopUpMenu(
+                  menuList: [
+                    PopupMenuItem(
+                      child: CustomPopUpMenu(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text("View Count"),
+                            Icon(Icons.chevron_right_rounded),
+                          ],
+                        ),
+                        menuList: [
+                          PopupMenuItem(
+                            child: const Text("Asc"),
+                            onTap: () {
+                              setState(() {
+                                ArrayUtils.sortVideoListByViewCountAsc(
+                                    widget.videos);
+                              });
+                            },
+                          ),
+                          PopupMenuItem(
+                            child: const Text("Desc"),
+                            onTap: () {
+                              setState(() {
+                                ArrayUtils.sortVideoListByViewCount(
+                                    widget.videos);
+                              });
+                            },
+                          )
+                        ],
                       ),
                     ),
-                    // const SizedBox(width: 10),
-                    CustomPopUpMenu(
-                      menuList: [
-                        PopupMenuItem(
-                          child: CustomPopUpMenu(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                Text("View Count"),
-                                Icon(Icons.chevron_right_rounded),
-                              ],
-                            ),
-                            menuList: [
-                              PopupMenuItem(
-                                child: const Text("Asc"),
-                                onTap: () {
-                                  setState(() {
-                                    ArrayUtils.sortVideoListByViewCountAsc(widget.videos);
-                                  });
-                                },
-                              ),
-                              PopupMenuItem(
-                                child: const Text("Desc"),
-                                onTap: () {
-                                  setState(() {
-                                    ArrayUtils.sortVideoListByViewCount(widget.videos);
-                                  });
-                                },
-                              )
-                            ],
-                          ),
+                    PopupMenuItem(
+                      child: CustomPopUpMenu(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text("Date Posted"),
+                            Icon(Icons.chevron_right_rounded),
+                          ],
                         ),
-                        PopupMenuItem(
-                          child: CustomPopUpMenu(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                Text("Date Posted"),
-                                Icon(Icons.chevron_right_rounded),
-                              ],
-                            ),
-                            menuList: [
-                              PopupMenuItem(
-                                child: const Text("Asc"),
-                                onTap: () {
-                                  setState(() {
-                                    ArrayUtils.sortVideoListByDateAsc(widget.videos);
-                                  });
-                                },
-                              ),
-                              PopupMenuItem(
-                                child: const Text("Desc"),
-                                onTap: () {
-                                  setState(() {
-                                    ArrayUtils.sortVideoListByDate(widget.videos);
-                                  });
-                                },
-                              )
-                            ],
+                        menuList: [
+                          PopupMenuItem(
+                            child: const Text("Asc"),
+                            onTap: () {
+                              setState(() {
+                                ArrayUtils.sortVideoListByDateAsc(
+                                    widget.videos);
+                              });
+                            },
                           ),
+                          PopupMenuItem(
+                            child: const Text("Desc"),
+                            onTap: () {
+                              setState(() {
+                                ArrayUtils.sortVideoListByDate(
+                                    widget.videos);
+                              });
+                            },
+                          )
+                        ],
+                      ),
+                    ),
+                    PopupMenuItem(
+                      child: CustomPopUpMenu(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: const [
+                            Text("Filter"),
+                            Icon(Icons.chevron_right_rounded),
+                          ],
                         ),
-                        PopupMenuItem(
-                          child: CustomPopUpMenu(
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: const [
-                                Text("Filter"),
-                                Icon(Icons.chevron_right_rounded),
-                              ],
-                            ),
-                            menuList: [
-                              PopupMenuItem(
-                                child: const Text("Date"),
-                                onTap: () {},
-                              ),
-                              PopupMenuItem(
-                                child: const Text("Interest"),
-                                onTap: () {},
-                              )
-                            ],
+                        menuList: [
+                          PopupMenuItem(
+                            child: const Text("Date"),
+                            onTap: () {},
                           ),
+                          PopupMenuItem(
+                            child: const Text("Interest"),
+                            onTap: () {},
+                          )
+                        ],
+                      ),
+                    ),
+                  ],
+                  child: Row(
+                    children: [
+                      Text(
+                        "Urutkan",
+                        style: poppins.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
                         ),
-                      ],
-                      child: Transform(
+                      ),
+                      const SizedBox(width: 10),
+                      Transform(
                         alignment: Alignment.center,
                         transform: Matrix4.rotationY(math.pi),
                         child: const Icon(Icons.sort_rounded),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ],
             ),
