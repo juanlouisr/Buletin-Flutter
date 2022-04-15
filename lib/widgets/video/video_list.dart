@@ -199,13 +199,6 @@ class VideoListParted extends StatefulWidget {
 }
 
 class _VideoListPartedState extends State<VideoListParted> {
-  final List<VideoInfo> videoList = [];
-
-  @override
-  void initState() {
-    videoList.addAll(widget.videos);
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -257,7 +250,7 @@ class _VideoListPartedState extends State<VideoListParted> {
                                 child: const Text("Asc"),
                                 onTap: () {
                                   setState(() {
-                                    ArrayUtils.sortVideoListByViewCountAsc(videoList);
+                                    ArrayUtils.sortVideoListByViewCountAsc(widget.videos);
                                   });
                                 },
                               ),
@@ -265,7 +258,7 @@ class _VideoListPartedState extends State<VideoListParted> {
                                 child: const Text("Desc"),
                                 onTap: () {
                                   setState(() {
-                                    ArrayUtils.sortVideoListByViewCount(videoList);
+                                    ArrayUtils.sortVideoListByViewCount(widget.videos);
                                   });
                                 },
                               )
@@ -286,7 +279,7 @@ class _VideoListPartedState extends State<VideoListParted> {
                                 child: const Text("Asc"),
                                 onTap: () {
                                   setState(() {
-                                    ArrayUtils.sortVideoListByDateAsc(videoList);
+                                    ArrayUtils.sortVideoListByDateAsc(widget.videos);
                                   });
                                 },
                               ),
@@ -294,7 +287,7 @@ class _VideoListPartedState extends State<VideoListParted> {
                                 child: const Text("Desc"),
                                 onTap: () {
                                   setState(() {
-                                    ArrayUtils.sortVideoListByDate(videoList);
+                                    ArrayUtils.sortVideoListByDate(widget.videos);
                                   });
                                 },
                               )
@@ -345,9 +338,9 @@ class _VideoListPartedState extends State<VideoListParted> {
                 maxCrossAxisExtent: 235,
                 crossAxisSpacing: 12,
               ),
-              itemCount: videoList.length,
+              itemCount: widget.videos.length,
               itemBuilder: (context, i) {
-                var video = videoList[i];
+                var video = widget.videos[i];
                 return VideoCardNew(videoInfo: video);
               }),
           if (widget.isShowButton) ...[widget.button ?? Container()]
