@@ -136,7 +136,7 @@ class CategoryCardNew extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "? playlist",
+                    "2 playlist",
                     maxLines: 2,
                     overflow: TextOverflow.ellipsis,
                     style: poppins.copyWith(
