@@ -1,4 +1,4 @@
-import 'package:buletin/widgets/search/search_result_screen.dart';
+import 'package:buletin/screens/search_result_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:buletin/constants.dart';
 import 'package:flutter_svg/flutter_svg.dart';
