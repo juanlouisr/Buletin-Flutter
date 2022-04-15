@@ -1,7 +1,5 @@
-import 'dart:ffi';
-
 import 'package:buletin/api/video_api.dart';
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:buletin/models/video_info.dart';
 import 'package:buletin/widgets/other/sidebar.dart';
 import 'package:buletin/widgets/video/video_list.dart';

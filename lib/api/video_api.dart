@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:buletin/models/video_info.dart';
 import 'package:http/http.dart' as http;
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:buletin/helpers/storage.dart';
 import 'package:jwt_decode/jwt_decode.dart';
 

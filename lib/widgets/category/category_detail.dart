@@ -1,4 +1,4 @@
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:buletin/models/category.dart';
 import 'package:buletin/widgets/other/appbar.dart';
 import 'package:buletin/widgets/playlist/playlist_list.dart';

@@ -1,4 +1,4 @@
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:buletin/widgets/category/category_list.dart';
 import 'package:buletin/widgets/other/sidebar.dart';
 import 'package:flutter/material.dart';

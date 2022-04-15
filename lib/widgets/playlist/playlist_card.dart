@@ -1,4 +1,4 @@
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:buletin/models/playlist_info.dart';
 import 'package:buletin/widgets/other/aspect_ratio_image.dart';
 import 'package:buletin/widgets/playlist/playlist_detail.dart';

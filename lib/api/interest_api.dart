@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 
 class InterestAPI {

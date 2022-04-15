@@ -1,4 +1,4 @@
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:buletin/models/account.dart';
 import 'package:buletin/screens/change_password_screen.dart';
 import 'package:buletin/widgets/other/appbar.dart';

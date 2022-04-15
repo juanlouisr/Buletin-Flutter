@@ -1,7 +1,7 @@
 import 'package:buletin/api/channel_api.dart';
 import 'package:buletin/models/channel_info.dart';
 import 'package:flutter/material.dart';
-import 'package:buletin/constants.dart';
+import 'package:buletin/utils/constants.dart';
 import 'package:buletin/widgets/channel/channel_card.dart';
 
 class ChannelList extends StatelessWidget {
