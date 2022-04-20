@@ -7,6 +7,7 @@ import 'package:buletin/widgets/other/popup_menu.dart';
 import 'package:buletin/widgets/video/video_card.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
+import 'package:responsive_grid/responsive_grid.dart';
 
 class VideoListHorizontal extends StatelessWidget {
   final Future<List<VideoInfo>> future;
@@ -334,19 +335,17 @@ class _VideoListPartedState extends State<VideoListParted> {
           const SizedBox(
             height: 10,
           ),
-          GridView.builder(
-              shrinkWrap: true,
-              // Untuk sekarang dibuat not scrollable
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 235,
-                crossAxisSpacing: 12,
-              ),
-              itemCount: widget.videos.length,
-              itemBuilder: (context, i) {
-                var video = widget.videos[i];
-                return VideoCardNew(videoInfo: video);
-              }),
+          ResponsiveGridRow(
+            children: widget.videos.map((video) {
+              return ResponsiveGridCol(
+                lg: 3,
+                child: Container(
+                  margin: EdgeInsets.symmetric(vertical: 10),
+                  child: VideoCardNew(videoInfo: video),
+                ),
+              );
+            }).toList(),
+          ),
           if (widget.isShowButton) ...[widget.button ?? Container()]
         ],
       ),

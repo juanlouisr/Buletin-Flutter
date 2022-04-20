@@ -52,30 +52,12 @@ class VideoCardShow extends StatelessWidget {
                   SizedBox(
                     height: 4,
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        '${videoInfo.getVideoCountCompact()} views',
-                        style: poppins.copyWith(
-                          fontSize: 10,
-                        )
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(right: 5, left: 5), 
-                        height: 5,
-                        width: 5,
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.black
-                        ),
-                      ),
-                      Text(
-                        videoInfo.getTimeago(),
-                        style: poppins.copyWith(
-                          fontSize: 10,
-                        )
-                      )
-                    ],
+                  Text(
+                    '${videoInfo.channelInfo.channelName}  ●  ${videoInfo.getVideoCount()} views  ●  ${videoInfo.getTimeago()}',
+                    style: poppins.copyWith(
+                      fontSize: 14.0,
+                      color: colorGrey,
+                    ),
                   ),
                 ],
               ),
