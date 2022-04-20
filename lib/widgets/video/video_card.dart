@@ -11,6 +11,7 @@ import 'package:buletin/screens/show.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:responsive_grid/responsive_grid.dart';
 
 class VideoCard extends StatelessWidget {
   final VideoInfo videoInfo;
@@ -247,31 +248,46 @@ class VideoCardNew extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(left: 2),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisSize: MainAxisSize.min,
+              child: ResponsiveGridRow(
                 children: [
-                  Text(
-                    videoInfo.title,
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: poppins.copyWith(
-                      fontSize: 15.0,
-                      fontWeight: FontWeight.bold,
-                      color: titleColor ?? colorBlack,
+                  ResponsiveGridCol(
+                    md: 2,
+                    child: Container(
+                      margin: EdgeInsets.only(right: 10),
+                      width: 30,
+                      height: 30,
+                      child: CircleAvatar(
+                        backgroundImage: NetworkImage(videoInfo.channelInfo.channelPicture),
+                        radius: 100,
+                      )
                     ),
                   ),
-                  Text(
-                    '${videoInfo.getVideoCount()} views  ●  ${videoInfo.getTimeago()}',
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                    style: poppins.copyWith(
-                      fontSize: 14.0,
-                      color: colorGrey,
+                  ResponsiveGridCol(
+                    md: 10,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          videoInfo.title,
+                          overflow: TextOverflow.ellipsis,
+                          style: poppins.copyWith(
+                            fontSize: 15.0,
+                            fontWeight: FontWeight.bold,
+                            color: titleColor ?? colorBlack,
+                          ),
+                        ),
+                        Text(
+                          '${videoInfo.channelInfo.channelName}  ●  ${videoInfo.getVideoCount()} views  ●  ${videoInfo.getTimeago()}',
+                          style: poppins.copyWith(
+                            fontSize: 14.0,
+                            color: colorGrey,
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
+                  )
                 ],
-              ),
+              )
             ),
           ],
         ),
