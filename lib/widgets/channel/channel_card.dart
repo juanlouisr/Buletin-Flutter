@@ -28,7 +28,7 @@ class ChannelCard extends StatelessWidget {
           child: AspectRatioImageNetwork(
             // image: 'https://2.bp.blogspot.com/-02D2Du7X_D0/XL7ApmT9B2I/AAAAAAAAAQQ/1KNM-yNQMgsW_oBPVnYFTqF3y58RHg2pwCLcBGAs/s1600/csf.jpg',
             // image: 'https://havecamerawilltravel.com/wp-content/uploads/2015/08/YouTube-Thumbnails-800x450.jpg',
-            image: channel.channelPicture,
+            image: channel.getThumbnail(),
             aspectRatio: cardAspectRatio
           ),
         )

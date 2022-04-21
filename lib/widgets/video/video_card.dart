@@ -1,8 +1,6 @@
 import 'package:buletin/api/auth_api.dart';
 import 'package:buletin/api/video_api.dart';
 import 'package:buletin/utils/constants.dart';
-import 'package:buletin/helpers/identifier.dart';
-import 'package:buletin/models/account.dart';
 import 'package:buletin/models/video_info.dart';
 import 'package:buletin/screens/channel_screen.dart';
 import 'package:buletin/widgets/other/aspect_ratio_image.dart';
@@ -12,6 +10,7 @@ import 'package:share_plus/share_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:responsive_grid/responsive_grid.dart';
+import 'package:buletin/utils/extension_image.dart';
 
 class VideoCard extends StatelessWidget {
   final VideoInfo videoInfo;
@@ -111,8 +110,8 @@ class VideoCardShareable extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) =>
-                              ChannelScreen(channelInfo: videoInfo.channelInfo)));
+                          builder: (context) => ChannelScreen(
+                              channelInfo: videoInfo.channelInfo)));
                 },
                 child: CircleAvatar(
                   foregroundImage: NetworkImage(
@@ -220,6 +219,14 @@ class VideoCardNew extends StatelessWidget {
                 width: 235,
                 height: 150,
                 fit: BoxFit.cover,
+                errorBuilder: (context, exeption, stackTrace) {
+                  return Image.asset(
+                    'placeholder'.jpg,
+                    fit: BoxFit.cover,
+                    height: 150,
+                    width: 235,
+                  );
+                },
                 loadingBuilder: (BuildContext context, Widget child,
                     ImageChunkEvent? loadingProgress) {
                   if (loadingProgress == null) {
@@ -247,48 +254,47 @@ class VideoCardNew extends StatelessWidget {
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 2),
-              child: ResponsiveGridRow(
-                children: [
-                  ResponsiveGridCol(
-                    md: 2,
-                    child: Container(
-                      margin: EdgeInsets.only(right: 10),
-                      width: 30,
-                      height: 30,
-                      child: CircleAvatar(
-                        backgroundImage: NetworkImage(videoInfo.channelInfo.channelPicture),
-                        radius: 100,
-                      )
+                padding: const EdgeInsets.only(left: 2),
+                child: ResponsiveGridRow(
+                  children: [
+                    ResponsiveGridCol(
+                      md: 2,
+                      child: Container(
+                          margin: EdgeInsets.only(right: 10),
+                          width: 30,
+                          height: 30,
+                          child: CircleAvatar(
+                            backgroundImage: NetworkImage(
+                                videoInfo.channelInfo.getThumbnail()),
+                            radius: 100,
+                          )),
                     ),
-                  ),
-                  ResponsiveGridCol(
-                    md: 10,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          videoInfo.title,
-                          overflow: TextOverflow.ellipsis,
-                          style: poppins.copyWith(
-                            fontSize: 15.0,
-                            fontWeight: FontWeight.bold,
-                            color: titleColor ?? colorBlack,
+                    ResponsiveGridCol(
+                      md: 10,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            videoInfo.title,
+                            overflow: TextOverflow.ellipsis,
+                            style: poppins.copyWith(
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.bold,
+                              color: titleColor ?? colorBlack,
+                            ),
                           ),
-                        ),
-                        Text(
-                          '${videoInfo.channelInfo.channelName}  ●  ${videoInfo.getVideoCount()} views  ●  ${videoInfo.getTimeago()}',
-                          style: poppins.copyWith(
-                            fontSize: 14.0,
-                            color: colorGrey,
+                          Text(
+                            '${videoInfo.channelInfo.channelName}  ●  ${videoInfo.getVideoCount()} views  ●  ${videoInfo.getTimeago()}',
+                            style: poppins.copyWith(
+                              fontSize: 14.0,
+                              color: colorGrey,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              )
-            ),
+                        ],
+                      ),
+                    )
+                  ],
+                )),
           ],
         ),
       ),

@@ -59,6 +59,14 @@ class SideNavigationBar extends StatelessWidget {
                     width: 90,
                     height: 90,
                     fit: BoxFit.cover,
+                    errorBuilder: (context, exeption, stackTrace) {
+                      return Image.asset(
+                        'placeholder'.jpg,
+                        fit: BoxFit.cover,
+                        height: 90,
+                        width: 90,
+                      );
+                    },
                   ),
                 ),
               ),

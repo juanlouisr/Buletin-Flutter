@@ -43,7 +43,7 @@ class _ChannelInformation extends State<ChannelInformation> {
           width: width.toDouble(),
           height: width.toDouble(),
           child: CircleAvatar(
-            backgroundImage: NetworkImage(channelInfo.channelPicture),
+            backgroundImage: NetworkImage(channelInfo.getThumbnail()),
             radius: 100,
           )
         ),

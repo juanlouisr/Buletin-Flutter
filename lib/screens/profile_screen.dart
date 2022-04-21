@@ -2,8 +2,8 @@ import 'package:buletin/utils/constants.dart';
 import 'package:buletin/models/account.dart';
 import 'package:buletin/screens/change_password_screen.dart';
 import 'package:buletin/widgets/other/appbar.dart';
-import 'package:buletin/widgets/other/sidebar.dart';
 import 'package:flutter/material.dart';
+import 'package:buletin/utils/extension_image.dart';
 
 class ProfileScreen extends StatelessWidget {
   final Account account;
@@ -42,6 +42,14 @@ class ProfileScreen extends StatelessWidget {
                             width: 100,
                             height: 100,
                             fit: BoxFit.cover,
+                            errorBuilder: (context, exeption, stackTrace) {
+                              return Image.asset(
+                                'placeholder'.jpg,
+                                fit: BoxFit.cover,
+                                height: 100,
+                                width: 100,
+                              );
+                            },
                           ),
                         ),
                         Positioned(

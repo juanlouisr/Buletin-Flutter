@@ -60,7 +60,7 @@ class VideoPlayer extends StatelessWidget {
                       width: 75,
                       height: 75,
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage(videoInfo.channelInfo.channelPicture),
+                        backgroundImage: NetworkImage(videoInfo.channelInfo.getThumbnail()),
                         radius: 100,
                       )
                     ),

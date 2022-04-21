@@ -1,3 +1,5 @@
+import 'package:buletin/utils/constants.dart';
+
 class ChannelInfo {
   final int channelId;
   final int ownerId;
@@ -12,6 +14,8 @@ class ChannelInfo {
     required this.channelPicture,
     required this.createdAt,
   });
+
+  String getThumbnail() => driveUrl + channelPicture;
 
   factory ChannelInfo.fromMap(Map<String, dynamic> map) {
     int channelId = map['channel_id'] as int;
