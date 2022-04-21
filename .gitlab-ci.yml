@@ -27,7 +27,7 @@ build:
     - flutter pub get
     - dart fix --apply
     - flutter pub run dart_code_metrics:metrics check-unused-files lib -d
-    - flutter build apk --split-per-abi --release
+    - flutter build apk --release
   artifacts:
     paths:
       - build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk
