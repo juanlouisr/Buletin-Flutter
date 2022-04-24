@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:buletin/models/video_info.dart';
-import 'package:buletin/widgets/channel/channel.dart';
 import 'package:buletin/widgets/video/player.dart';
 import 'package:buletin/utils/constants.dart';
 import 'package:responsive_grid/responsive_grid.dart';
-import 'package:timeago/timeago.dart' as timeago;
 import 'package:buletin/screens/channel_screen.dart';
+import 'package:buletin/utils/extension_image.dart';
 
 class VideoPlayer extends StatelessWidget {
   final VideoInfo videoInfo;
@@ -60,9 +59,23 @@ class VideoPlayer extends StatelessWidget {
                       width: 75,
                       height: 75,
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage(videoInfo.channelInfo.getThumbnail()),
-                        radius: 100,
-                      )
+                        child: ClipOval(
+                          child: Image.network(
+                            videoInfo.channelInfo.getThumbnail(),
+                            width: 100,
+                            height: 100,
+                            fit: BoxFit.cover,
+                            errorBuilder: (context, exeption, stackTrace) {
+                              return Image.asset(
+                                'placeholder'.jpg,
+                                fit: BoxFit.cover,
+                                height: 100,
+                                width: 100,
+                              );
+                            },
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                   ResponsiveGridCol(

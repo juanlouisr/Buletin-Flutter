@@ -260,14 +260,28 @@ class VideoCardNew extends StatelessWidget {
                     ResponsiveGridCol(
                       md: 2,
                       child: Container(
-                          margin: EdgeInsets.only(right: 10),
-                          width: 30,
-                          height: 30,
-                          child: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                videoInfo.channelInfo.getThumbnail()),
-                            radius: 100,
-                          )),
+                        margin: EdgeInsets.only(right: 10),
+                        width: 30,
+                        height: 30,
+                        child: CircleAvatar(
+                          child: ClipOval(
+                            child: Image.network(
+                              videoInfo.channelInfo.getThumbnail(),
+                              width: 100,
+                              height: 100,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, exeption, stackTrace) {
+                                return Image.asset(
+                                  'placeholder'.jpg,
+                                  fit: BoxFit.cover,
+                                  height: 100,
+                                  width: 100,
+                                );
+                              },
+                            ),
+                          ),
+                        ),
+                      ),
                     ),
                     ResponsiveGridCol(
                       md: 10,
@@ -284,7 +298,9 @@ class VideoCardNew extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            '${videoInfo.channelInfo.channelName}  ●  ${videoInfo.getVideoCount()} views  ●  ${videoInfo.getTimeago()}',
+                            '${videoInfo.channelInfo.channelName}\n${videoInfo.getVideoCount()} views  ●  ${videoInfo.getTimeago()}',
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
                             style: poppins.copyWith(
                               fontSize: 14.0,
                               color: colorGrey,
