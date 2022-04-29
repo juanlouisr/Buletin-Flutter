@@ -3,6 +3,7 @@ import 'package:buletin/models/playlist_info.dart';
 import 'package:buletin/widgets/other/appbar.dart';
 import 'package:buletin/widgets/video/video_card.dart';
 import 'package:flutter/material.dart';
+import 'package:buletin/utils/extension_image.dart';
 import 'dart:math' as math;
 
 class PlaylistDetail extends StatelessWidget {
@@ -25,6 +26,14 @@ class PlaylistDetail extends StatelessWidget {
               child: Image.network(
                 playlistInfo.getPictureUrl(),
                 fit: BoxFit.cover,
+                errorBuilder: (context, exeption, stackTrace) {
+                  return Image.asset(
+                    'placeholder'.jpg,
+                    fit: BoxFit.cover,
+                    height: 200,
+                    width: double.infinity,
+                  );
+                },
                 loadingBuilder: (BuildContext context, Widget child,
                     ImageChunkEvent? loadingProgress) {
                   if (loadingProgress == null) {
@@ -53,7 +62,9 @@ class PlaylistDetail extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            const SizedBox(width: 5,),
+                            const SizedBox(
+                              width: 5,
+                            ),
                             Text(
                               "Videos",
                               style: poppins.copyWith(

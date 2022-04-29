@@ -3,6 +3,7 @@ import 'package:buletin/models/category.dart';
 import 'package:buletin/widgets/other/appbar.dart';
 import 'package:buletin/widgets/playlist/playlist_list.dart';
 import 'package:flutter/material.dart';
+import 'package:buletin/utils/extension_image.dart';
 
 class CategoryDetail extends StatelessWidget {
   final Category category;
@@ -29,6 +30,14 @@ class CategoryDetail extends StatelessWidget {
                 width: double.infinity,
                 height: 200,
                 fit: BoxFit.cover,
+                errorBuilder: (context, exeption, stackTrace) {
+                  return Image.asset(
+                    'placeholder'.jpg,
+                    fit: BoxFit.cover,
+                    height: 200,
+                    width: double.infinity,
+                  );
+                },
                 loadingBuilder: (BuildContext context, Widget child,
                     ImageChunkEvent? loadingProgress) {
                   if (loadingProgress == null) {

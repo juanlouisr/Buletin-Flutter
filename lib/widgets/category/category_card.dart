@@ -3,6 +3,7 @@ import 'package:buletin/models/category.dart';
 import 'package:buletin/widgets/category/category_detail.dart';
 import 'package:buletin/widgets/other/aspect_ratio_image.dart';
 import 'package:flutter/material.dart';
+import 'package:buletin/utils/extension_image.dart';
 
 class CategoryCard extends StatelessWidget {
   final Category category;
@@ -93,6 +94,14 @@ class CategoryCardNew extends StatelessWidget {
                 width: 150,
                 height: 200,
                 fit: BoxFit.cover,
+                errorBuilder: (context, exeption, stackTrace) {
+                  return Image.asset(
+                    'placeholder'.jpg,
+                    fit: BoxFit.cover,
+                    width: 150,
+                    height: 200,
+                  );
+                },
                 loadingBuilder: (BuildContext context, Widget child,
                     ImageChunkEvent? loadingProgress) {
                   if (loadingProgress == null) {

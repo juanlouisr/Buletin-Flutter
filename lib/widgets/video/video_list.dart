@@ -8,6 +8,7 @@ import 'package:buletin/widgets/video/video_card.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 import 'package:responsive_grid/responsive_grid.dart';
+import 'package:buletin/utils/extension_image.dart';
 
 class VideoListHorizontal extends StatelessWidget {
   final Future<List<VideoInfo>> future;
@@ -84,11 +85,20 @@ class NewVideoComponent extends StatelessWidget {
                 children: [
                   Image.network(
                     // videoInfo.getThumbnail(),
-                    "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg",
+                    videoInfo.getThumbnail(),
                     // "https://htmlcolorcodes.com/assets/images/colors/white-color-solid-background-1920x1080.png",
                     fit: BoxFit.cover,
                     height: double.infinity,
                     width: double.infinity,
+                    errorBuilder: (context, exeption, stackTrace) {
+                      print(exeption);
+                      return Image.asset(
+                        'placeholder'.jpg,
+                        fit: BoxFit.cover,
+                        height: double.infinity,
+                        width: double.infinity,
+                      );
+                    },
                     loadingBuilder: (BuildContext context, Widget child,
                         ImageChunkEvent? loadingProgress) {
                       if (loadingProgress == null) {
@@ -281,8 +291,7 @@ class _VideoListPartedState extends State<VideoListParted> {
                             child: const Text("Desc"),
                             onTap: () {
                               setState(() {
-                                ArrayUtils.sortVideoListByDate(
-                                    widget.videos);
+                                ArrayUtils.sortVideoListByDate(widget.videos);
                               });
                             },
                           )

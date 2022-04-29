@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:buletin/utils/extension_image.dart';
 
 class AspectRatioImageNetwork extends StatelessWidget {
   final String image;
@@ -17,6 +18,11 @@ class AspectRatioImageNetwork extends StatelessWidget {
         // sementara pakai url video
         image,
         fit: BoxFit.cover,
+        errorBuilder: (context, exeption, stackTrace) {
+          return Image.asset(
+            'placeholder'.jpg,
+          );
+        },
         loadingBuilder: (BuildContext context, Widget child,
             ImageChunkEvent? loadingProgress) {
           if (loadingProgress == null) {
