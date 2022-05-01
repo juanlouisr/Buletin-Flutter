@@ -16,7 +16,7 @@ class ScreenTemplate extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: useSidebar ? const SideNavigationBar() : null,
-      appBar: CustomAppBar(),
+      appBar: const CustomAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(12), // Ganti aja ininya
         child: child,

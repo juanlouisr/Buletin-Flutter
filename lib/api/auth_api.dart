@@ -21,7 +21,7 @@ class AuthApi extends ChangeNotifier {
   String? _viewerId = '';
   get viewerId => _viewerId;
 
-  Duration get loginTime => Duration(milliseconds: 2250);
+  Duration get loginTime => const Duration(milliseconds: 2250);
 
   Future<String?> authUser(LoginData data) async {
     var url = Uri.http(baseUrl, loginEndpoint);

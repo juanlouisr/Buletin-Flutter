@@ -14,10 +14,10 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreen extends State<LoginScreen> {
-  Duration get loginTime => Duration(milliseconds: 2250);
+  Duration get loginTime => const Duration(milliseconds: 2250);
   bool isSignUp = false;
   late SignupData signupData;
-  final authApi = new AuthApi();
+  final authApi = AuthApi();
   final validateName = ValidationBuilder().minLength(1).build();
   final validatePhone = ValidationBuilder().minLength(1).phone().build();
 
@@ -34,7 +34,7 @@ class _LoginScreen extends State<LoginScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: const SideNavigationBar(),
-      appBar: CustomAppBar(),
+      appBar: const CustomAppBar(),
       body: FlutterLogin(
         onLogin: Provider.of<AuthApi>(context, listen: false).authUser,
         onSignup: _signupUser,
@@ -55,14 +55,14 @@ class _LoginScreen extends State<LoginScreen> {
         ),
         additionalSignupFields: [
           UserFormField(
-            icon: Icon(Icons.people),
+            icon: const Icon(Icons.people),
             keyName: 'name', 
             fieldValidator: (val) {
               return validateName(val);
             },
             userType: LoginUserType.name),
           UserFormField(
-            icon: Icon(Icons.local_phone),
+            icon: const Icon(Icons.local_phone),
             keyName: 'phone', 
             fieldValidator: (val) {
               return validatePhone(val);

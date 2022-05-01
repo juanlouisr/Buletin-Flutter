@@ -18,7 +18,7 @@ class ChangePasswordScreen extends StatelessWidget {
     String newPass = "";
 
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: const CustomAppBar(),
       body: Center(
         child: SingleChildScrollView(
           child: SizedBox(

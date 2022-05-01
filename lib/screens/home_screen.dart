@@ -91,8 +91,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               onPressed: () {
                                 VideoAPI.getVideoByInterests(pageSize, 8).then((res) {
-                                  var data = res as List<VideoInfo>;
-                                  if (data.length > 0) {
+                                  var data = res;
+                                  if (data.isNotEmpty) {
                                     setState(() {
                                       pageSize += 1;
                                     });

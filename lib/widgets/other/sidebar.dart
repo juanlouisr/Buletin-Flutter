@@ -79,7 +79,7 @@ class SideNavigationBar extends StatelessWidget {
             title: const Text("History"),
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HistoryScreen()));
+                  MaterialPageRoute(builder: (context) => const HistoryScreen()));
             },
           ),
           ListTile(

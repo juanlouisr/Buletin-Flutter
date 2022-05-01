@@ -20,7 +20,7 @@ class ExploreScreen extends StatelessWidget {
             child: Row(
                 children: List.from(interests.map((interest) => 
                   Container(
-                    margin: EdgeInsets.only(right: 10),
+                    margin: const EdgeInsets.only(right: 10),
                     child: Chip(
                       padding: const EdgeInsets.only(top: 6, bottom: 6, right: 12, left: 12),
                       label: Text(
@@ -37,7 +37,7 @@ class ExploreScreen extends StatelessWidget {
               ),
           ),
           
-          CategoryList(),
+          const CategoryList(),
         ],
       ),
       drawer: const SideNavigationBar(),

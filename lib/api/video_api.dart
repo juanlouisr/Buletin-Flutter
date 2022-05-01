@@ -107,7 +107,7 @@ class VideoAPI {
       'page_size': pageSize.toString(),
     };
 
-    var uri = Uri.http(baseUrl, historyEndpoint + '/${viewerId}', queryParams);
+    var uri = Uri.http(baseUrl, historyEndpoint + '/$viewerId', queryParams);
     var response = await http.get(uri);
     var jsonData = jsonDecode(response.body);
 
@@ -122,7 +122,7 @@ class VideoAPI {
 
   static Future createVideoView(int videoId, String identifier) async {
     var url = Uri.http(baseUrl, videoViewEndpoint);
-    var response = await http.post(url, body: jsonEncode({
+    await http.post(url, body: jsonEncode({
       "video_id": videoId,
       "viewer_id": identifier.toString(),
     }));

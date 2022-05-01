@@ -4,7 +4,6 @@ import 'package:responsive_grid/responsive_grid.dart';
 import 'package:buletin/models/channel_info.dart';
 import 'package:buletin/models/video_info.dart';
 import 'package:buletin/widgets/video/video_card.dart';
-import 'package:buletin/widgets/other/title_home.dart';
 import 'package:buletin/widgets/channel/channel_information.dart';
 import 'package:buletin/api/video_api.dart';
 import 'package:buletin/api/channel_api.dart';
@@ -39,28 +38,29 @@ class _ChannelScreen extends State<ChannelScreen> {
   late ChannelInfo channelInfo;
   late List<VideoInfo> videos;
 
+  @override
   void initState() {
     super.initState();
-    this.channelInfo = widget.channelInfo;
-    this.currentTab = 'video';
+    channelInfo = widget.channelInfo;
+    currentTab = 'video';
     _future = sendData();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: CustomAppBar(),
+        appBar: const CustomAppBar(),
         body: FutureBuilder<dynamic>(
           future: _future,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }
 
             if (snapshot.hasError) {
-              return Center(
+              return const Center(
                 child: Text('Something went wrong'),
               );
             }
@@ -83,8 +83,8 @@ class _ChannelScreen extends State<ChannelScreen> {
       ResponsiveGridCol(
         lg: 12,
         child: Container(
-          alignment: Alignment(0, 0),
-          color: Color.fromRGBO(238, 238, 238, 100),
+          alignment: const Alignment(0, 0),
+          color: const Color.fromRGBO(238, 238, 238, 100),
           child: ChannelInformation(
             channelInfo: channelInfo,
             width: 75,
@@ -122,13 +122,13 @@ class _ChannelScreen extends State<ChannelScreen> {
     return [
       ResponsiveGridCol(
         child: Container(
-          margin: EdgeInsets.only(left: 15),
+          margin: const EdgeInsets.only(left: 15),
           child: ResponsiveGridRow(
             children: videos.map((i) {
               return ResponsiveGridCol(
                 lg: 3,
                 child: Container(
-                  margin: EdgeInsets.only(bottom: 10, top: 10),
+                  margin: const EdgeInsets.only(bottom: 10, top: 10),
                   child: VideoCardNew(videoInfo: i),
                 ),
               );
@@ -160,9 +160,9 @@ class _ChannelScreen extends State<ChannelScreen> {
 
   Widget activeTab(String text) {
     return Container(
-      padding: EdgeInsets.only(top: 20, bottom: 20),
-      alignment: Alignment(0, 0),
-      color: Color.fromRGBO(255, 130, 130, 100),
+      padding: const EdgeInsets.only(top: 20, bottom: 20),
+      alignment: const Alignment(0, 0),
+      color: const Color.fromRGBO(255, 130, 130, 100),
       child: Text(
         text,
         style: GoogleFonts.poppins(
@@ -174,9 +174,9 @@ class _ChannelScreen extends State<ChannelScreen> {
 
   Widget unactiveTab(String text) {
     return Container(
-      padding: EdgeInsets.only(top: 20, bottom: 20),
-      alignment: Alignment(0, 0),
-      color: Color.fromARGB(156, 225, 225, 225),
+      padding: const EdgeInsets.only(top: 20, bottom: 20),
+      alignment: const Alignment(0, 0),
+      color: const Color.fromARGB(156, 225, 225, 225),
       child: Text(
         text,
         style: GoogleFonts.poppins()

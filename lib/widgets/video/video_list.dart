@@ -328,7 +328,7 @@ class _VideoListPartedState extends State<VideoListParted> {
               return ResponsiveGridCol(
                 lg: 3,
                 child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 10),
+                  margin: const EdgeInsets.symmetric(vertical: 10),
                   child: VideoCardNew(videoInfo: video),
                 ),
               );
