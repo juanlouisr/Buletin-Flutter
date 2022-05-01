@@ -1,3 +1,4 @@
+import 'package:buletin/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:radis_rounded_button/radis_rounded_button.dart';
@@ -85,6 +86,9 @@ class _InterestChooseScreen extends State<InterestChooseScreen> {
                             var success = await Provider.of<AuthApi>(context, listen: false).signupUser(widget.signupData, interestString);
                             if (success) {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                            } else {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                              openDialog("Email has already been taken");
                             }
                           },
                         )
@@ -98,4 +102,14 @@ class _InterestChooseScreen extends State<InterestChooseScreen> {
         ),
       );
   }
+
+  Future openDialog(String message) => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+            title: Text(message),
+            actions: [
+              TextButton(
+                  onPressed: Navigator.of(context).pop, child: const Text("OK"))
+            ],
+          ));
 }
