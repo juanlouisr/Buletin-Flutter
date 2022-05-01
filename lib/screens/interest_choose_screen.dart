@@ -1,3 +1,4 @@
+import 'package:buletin/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:chips_choice_null_safety/chips_choice_null_safety.dart';
 import 'package:radis_rounded_button/radis_rounded_button.dart';
@@ -25,7 +26,7 @@ class _InterestChooseScreen extends State<InterestChooseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: const SideNavigationBar(),
-        appBar: CustomAppBar(),
+        appBar: const CustomAppBar(),
         backgroundColor: colorPrimary,
         body: Center(
           child: Expanded(
@@ -34,17 +35,17 @@ class _InterestChooseScreen extends State<InterestChooseScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(20))
                   ),
                   width: 800,
                   child: Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 40,
                       ),
-                      Text(
+                      const Text(
                         'Please choose your interest', 
                         textAlign: TextAlign.left,
                         style: TextStyle(fontSize: 20),
@@ -58,7 +59,7 @@ class _InterestChooseScreen extends State<InterestChooseScreen> {
                               onChanged: (val) => setState(() => interests = val),
                               choiceItems: snapshot.data as List<C2Choice<dynamic>>,
                               wrapped: true,
-                              choiceStyle: C2ChoiceStyle(
+                              choiceStyle: const C2ChoiceStyle(
                                 labelStyle: TextStyle(color: Colors.black),
                                 color: colorPrimary,
                                 margin: EdgeInsets.all(10),
@@ -66,18 +67,18 @@ class _InterestChooseScreen extends State<InterestChooseScreen> {
                               ),
                             );
                           }
-                          return CircularProgressIndicator();
+                          return const CircularProgressIndicator();
                         },
                       ),
                       Container(
-                        margin: EdgeInsets.only(bottom: 40),
+                        margin: const EdgeInsets.only(bottom: 40),
                         width: 150,
                         child: RoundedButton(
-                          widget: Text(
+                          widget: const Text(
                             'SUBMIT',
                             style: TextStyle(color: Colors.white),
                           ),
-                          padding: EdgeInsets.symmetric(horizontal: 0, vertical: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 20),
                           backgroundColor: colorPrimary,
                           radius: 20,
                           onPressed: () async {
@@ -85,6 +86,9 @@ class _InterestChooseScreen extends State<InterestChooseScreen> {
                             var success = await Provider.of<AuthApi>(context, listen: false).signupUser(widget.signupData, interestString);
                             if (success) {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+                            } else {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => LoginScreen()));
+                              openDialog("Email has already been taken");
                             }
                           },
                         )
@@ -98,4 +102,14 @@ class _InterestChooseScreen extends State<InterestChooseScreen> {
         ),
       );
   }
+
+  Future openDialog(String message) => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+            title: Text(message),
+            actions: [
+              TextButton(
+                  onPressed: Navigator.of(context).pop, child: const Text("OK"))
+            ],
+          ));
 }

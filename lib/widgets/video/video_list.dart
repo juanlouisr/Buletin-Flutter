@@ -298,27 +298,6 @@ class _VideoListPartedState extends State<VideoListParted> {
                         ],
                       ),
                     ),
-                    PopupMenuItem(
-                      child: CustomPopUpMenu(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: const [
-                            Text("Filter"),
-                            Icon(Icons.chevron_right_rounded),
-                          ],
-                        ),
-                        menuList: [
-                          PopupMenuItem(
-                            child: const Text("Date"),
-                            onTap: () {},
-                          ),
-                          PopupMenuItem(
-                            child: const Text("Interest"),
-                            onTap: () {},
-                          )
-                        ],
-                      ),
-                    ),
                   ],
                   child: Row(
                     children: [
@@ -349,7 +328,7 @@ class _VideoListPartedState extends State<VideoListParted> {
               return ResponsiveGridCol(
                 lg: 3,
                 child: Container(
-                  margin: EdgeInsets.symmetric(vertical: 10),
+                  margin: const EdgeInsets.symmetric(vertical: 10),
                   child: VideoCardNew(videoInfo: video),
                 ),
               );

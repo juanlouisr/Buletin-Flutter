@@ -47,8 +47,8 @@ class _HistoryScreen extends State<HistoryScreen> {
                   onNotification: (notification) {
                     if (isCanScroll) {
                       VideoAPI.getHistoryVideo(pageNo: currentPage, pageSize: 12, viewerId: identifier).then((res) {
-                        var data = res as List<VideoInfo>;
-                        if (data.length > 0) {
+                        var data = res;
+                        if (data.isNotEmpty) {
                           setState(() {
                             videoValueNotifier.value.addAll(data);
                             currentPage += 1;
@@ -69,7 +69,7 @@ class _HistoryScreen extends State<HistoryScreen> {
             );
           }
 
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         },
       ),
     );

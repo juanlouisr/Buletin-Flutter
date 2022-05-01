@@ -20,7 +20,7 @@ class Show extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         drawer: const SideNavigationBar(),
-        appBar: CustomAppBar(),
+        appBar: const CustomAppBar(),
         body: Container(
           child: FutureBuilder<dynamic> (
             future: VideoAPI.getVideoByInterests(1, pageSize),
@@ -34,7 +34,7 @@ class Show extends StatelessWidget {
                 );
               }
 
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             },
           )
         ), 
@@ -58,6 +58,7 @@ class _ScrollShowRow extends State<ScrollShowRow> {
   int currentPage = 2;
   bool isCanScroll = true;
 
+  @override
   void initState() {
     super.initState();
     videos = widget.videos;
@@ -79,12 +80,12 @@ class _ScrollShowRow extends State<ScrollShowRow> {
               lg: 4,
               sm: 12,
               child: Container(
-                margin: EdgeInsets.only(bottom: 10, top: 10),
+                margin: const EdgeInsets.only(bottom: 10, top: 10),
                 child: ListView.builder(
                   itemCount: videos.length,
                   shrinkWrap: true,
                   itemBuilder: (BuildContext ctx, int index) {
-                    return VideoCardShow(videos[index] as VideoInfo);
+                    return VideoCardShow(videos[index]);
                   },
                 ),
               ),
@@ -95,8 +96,8 @@ class _ScrollShowRow extends State<ScrollShowRow> {
       onNotification: (notification) {
         if (isCanScroll) {
           VideoAPI.getVideoByInterests(currentPage, widget.pageSize).then((res) {
-            var data = res as List<VideoInfo>;
-            if (data.length > 0) {
+            var data = res;
+            if (data.isNotEmpty) {
               setState(() {
                 videos.addAll(data);
               });

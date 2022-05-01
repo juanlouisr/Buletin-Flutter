@@ -79,7 +79,7 @@ class SideNavigationBar extends StatelessWidget {
             title: const Text("History"),
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HistoryScreen()));
+                  MaterialPageRoute(builder: (context) => const HistoryScreen()));
             },
           ),
           ListTile(
@@ -110,21 +110,21 @@ class SideNavigationBar extends StatelessWidget {
           //         MaterialPageRoute(builder: (context) => ForYouScreen()));
           //   },
           // ),
-          const Divider(),
-          ListTile(
-            leading: SvgPicture.asset(
-              'settings'.svg,
-            ),
-            title: const Text("Settings"),
-            onTap: () {},
-          ),
-          ListTile(
-            leading: SvgPicture.asset(
-              'question-circle'.svg,
-            ),
-            title: const Text("Help & Suggestion"),
-            onTap: () {},
-          ),
+          // const Divider(),
+          // ListTile(
+          //   leading: SvgPicture.asset(
+          //     'settings'.svg,
+          //   ),
+          //   title: const Text("Settings"),
+          //   onTap: () {},
+          // ),
+          // ListTile(
+          //   leading: SvgPicture.asset(
+          //     'question-circle'.svg,
+          //   ),
+          //   title: const Text("Help & Suggestion"),
+          //   onTap: () {},
+          // ),
           const Divider(),
           if (isLoggedIn) ...[
             ListTile(

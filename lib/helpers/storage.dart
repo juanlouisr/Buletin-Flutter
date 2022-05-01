@@ -1,8 +1,8 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class Storage {
-  static final storage = new FlutterSecureStorage();
-  static final keyToken = 'token';
+  static const storage = FlutterSecureStorage();
+  static const keyToken = 'token';
 
   static Future<String?> readToken() async {
     return await storage.read(key: keyToken);

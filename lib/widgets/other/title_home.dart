@@ -19,7 +19,7 @@ class TitleHome extends StatelessWidget {
             title, 
             style: Theme.of(context).textTheme.titleLarge!.copyWith(fontSize: 24)
           ),
-          Divider()
+          const Divider()
         ],
       ),
     );

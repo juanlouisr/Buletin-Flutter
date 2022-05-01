@@ -1,5 +1,4 @@
 import 'package:buletin/api/category_api.dart';
-import 'package:buletin/utils/constants.dart';
 import 'package:buletin/models/category.dart';
 import 'package:buletin/widgets/category/category_card.dart';
 import 'package:flutter/cupertino.dart';

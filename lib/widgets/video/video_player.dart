@@ -20,13 +20,13 @@ class VideoPlayer extends StatelessWidget {
     final interests = videoInfo.interests;
     return Container(
       width: column1,
-      padding: EdgeInsets.all(30),
+      padding: const EdgeInsets.all(30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Player(videoInfo: videoInfo),
           Container(
-            padding: EdgeInsets.only(top: 5.0, bottom: 10.0),
+            padding: const EdgeInsets.only(top: 5.0, bottom: 10.0),
             child: Text(
               videoInfo.title,
               textAlign: TextAlign.left,
@@ -42,10 +42,10 @@ class VideoPlayer extends StatelessWidget {
               Navigator.push(context, MaterialPageRoute(builder: (context) => ChannelScreen(channelInfo: videoInfo.channelInfo)));
             },
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Color.fromRGBO(148, 148, 148, 100),
+                  color: const Color.fromRGBO(148, 148, 148, 100),
                   width: 2
                 ),
                 borderRadius: BorderRadius.circular(15)
@@ -55,7 +55,7 @@ class VideoPlayer extends StatelessWidget {
                   ResponsiveGridCol(
                     md: 2,
                     child: Container(
-                      margin: EdgeInsets.only(right: 10),
+                      margin: const EdgeInsets.only(right: 10),
                       width: 75,
                       height: 75,
                       child: CircleAvatar(
@@ -81,12 +81,12 @@ class VideoPlayer extends StatelessWidget {
                   ResponsiveGridCol(
                     md: 10,
                     child: Container(
-                      margin: EdgeInsets.only(right: 15),
+                      margin: const EdgeInsets.only(right: 15),
                       child: ResponsiveGridRow(
                         children: [
                           ResponsiveGridCol(
                             lg: 12,
-                            child: SizedBox(
+                            child: const SizedBox(
                               height: 15,
                             )
                           ),
@@ -120,7 +120,7 @@ class VideoPlayer extends StatelessWidget {
 
                           ResponsiveGridCol(
                             lg: 12,
-                            child: SizedBox(
+                            child: const SizedBox(
                               height: 3,
                             )
                           ),
@@ -159,7 +159,7 @@ class VideoPlayer extends StatelessWidget {
           ),
           
           Container(
-            padding: EdgeInsets.only(top: 15.0),
+            padding: const EdgeInsets.only(top: 15.0),
             child: Text(
               'Deskripsi',
               style: poppins.copyWith(
@@ -169,7 +169,7 @@ class VideoPlayer extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 5.0),
+            padding: const EdgeInsets.only(top: 5.0),
             child: Text(
               videoInfo.desc,
               style: poppins.copyWith(
@@ -178,7 +178,7 @@ class VideoPlayer extends StatelessWidget {
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 5.0),
+            padding: const EdgeInsets.only(top: 5.0),
             child: Text(
               'Tags',
               style: poppins.copyWith(
@@ -192,7 +192,7 @@ class VideoPlayer extends StatelessWidget {
             child: Row(
               children: List.from(interests.values.map((interest) => 
                 Container(
-                  margin: EdgeInsets.only(right: 10),
+                  margin: const EdgeInsets.only(right: 10),
                   child: Chip(
                     padding: const EdgeInsets.only(top: 6, bottom: 6, right: 12, left: 12),
                     label: Text(

@@ -18,7 +18,7 @@ class CategoryDetail extends StatelessWidget {
     double statusBarHeight = MediaQuery.of(context).padding.top;
     double contentHeight = deviceSize.height - 56 - statusBarHeight;
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: const CustomAppBar(),
       body: Column(
         children: [
           Stack(

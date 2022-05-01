@@ -260,7 +260,7 @@ class VideoCardNew extends StatelessWidget {
                     ResponsiveGridCol(
                       md: 2,
                       child: Container(
-                        margin: EdgeInsets.only(right: 10),
+                        margin: const EdgeInsets.only(right: 10),
                         width: 30,
                         height: 30,
                         child: CircleAvatar(

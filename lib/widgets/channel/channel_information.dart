@@ -26,12 +26,13 @@ class _ChannelInformation extends State<ChannelInformation> {
   late int fontSizeTitle;
   late int fontSizeSubtitle;
 
+  @override
   void initState() {
     super.initState();
-    this.channelInfo = widget.channelInfo;
-    this.fontSizeTitle = widget.fontSizeTitle;
-    this.fontSizeSubtitle = widget.fontSizeSubtitle;
-    this.width = widget.width;
+    channelInfo = widget.channelInfo;
+    fontSizeTitle = widget.fontSizeTitle;
+    fontSizeSubtitle = widget.fontSizeSubtitle;
+    width = widget.width;
   }
 
   @override
@@ -39,8 +40,8 @@ class _ChannelInformation extends State<ChannelInformation> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        SizedBox(height: 20),
-        Container(
+        const SizedBox(height: 20),
+        SizedBox(
           width: width.toDouble(),
           height: width.toDouble(),
           child: CircleAvatar(
@@ -63,7 +64,7 @@ class _ChannelInformation extends State<ChannelInformation> {
           ),
         ),
 
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Text(
           channelInfo.channelName,
           style: poppins.copyWith(
@@ -78,7 +79,7 @@ class _ChannelInformation extends State<ChannelInformation> {
             fontSize: fontSizeSubtitle.toDouble(),
           )
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
       ],
     );
   }

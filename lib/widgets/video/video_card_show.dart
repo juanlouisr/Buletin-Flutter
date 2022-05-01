@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:buletin/models/video_info.dart';
 import 'package:buletin/screens/show.dart';
 import 'package:buletin/utils/constants.dart';
@@ -20,13 +19,13 @@ class VideoCardShow extends StatelessWidget {
             context, MaterialPageRoute(builder: (context) => Show(videoInfo)));
       },
       child: Container(
-        margin: EdgeInsets.only(bottom: 10, right: 20),
+        margin: const EdgeInsets.only(bottom: 10, right: 20),
         child: Row(
           children: [
             Container(
               width: 140,
               height: 80,
-              margin: EdgeInsets.only(right: 16),
+              margin: const EdgeInsets.only(right: 16),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
                 image: DecorationImage(
@@ -49,7 +48,7 @@ class VideoCardShow extends StatelessWidget {
                       fontWeight: FontWeight.bold
                     )
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 4,
                   ),
                   Text(

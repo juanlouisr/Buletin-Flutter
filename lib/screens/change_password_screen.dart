@@ -18,7 +18,7 @@ class ChangePasswordScreen extends StatelessWidget {
     String newPass = "";
 
     return Scaffold(
-      appBar: CustomAppBar(),
+      appBar: const CustomAppBar(),
       body: Center(
         child: SingleChildScrollView(
           child: SizedBox(
@@ -36,7 +36,7 @@ class ChangePasswordScreen extends StatelessWidget {
                   children: [
                     RoundedPasswordField(
                       key: key,
-                      hintText: "old password",
+                      hintText: "Old password",
                       onChanged: (str) {
                         oldPass = str;
                       },
@@ -44,7 +44,7 @@ class ChangePasswordScreen extends StatelessWidget {
                     const SizedBox(height: 20),
                     RoundedPasswordField(
                       key: key,
-                      hintText: "new password",
+                      hintText: "New password",
                       onChanged: (str) {
                         newPass = str;
                       },
@@ -57,7 +57,7 @@ class ChangePasswordScreen extends StatelessWidget {
                           oldPass: oldPass,
                           newPass: newPass,
                         );
-                        if (response == true) {
+                        if (response) {
                           Navigator.pop(context);
                           openDialog(context, "Password Changed Successfully!");
                         } else {
