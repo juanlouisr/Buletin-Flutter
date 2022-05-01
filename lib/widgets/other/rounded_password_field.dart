@@ -38,7 +38,7 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
         decoration: InputDecoration(
           hintText: widget.hintText,
           suffixIcon: IconButton(
-            icon: Icon(_passwordVisible? Icons.visibility:Icons.visibility_off),
+            icon: Icon(_passwordVisible? Icons.visibility_off:Icons.visibility),
             color: Theme.of(context).primaryColor,
             onPressed: () {
               _toggle();
